@@ -1,6 +1,12 @@
 <div>Edit pre-draft player values below:</div>
-<div ng-repeat="player in players">
-  <div class="player">
-      {{ player.Name }} {{ player.AverageAuction }}
-  </div>
-</div>
+<a href="#/draft">I'm ready for the draft.</a>
+<form novalidate name="predraftForm" ng-submit="submitForm(predraftForm.$valid)">
+	<input type="button" ng-click="reset()" value="Reset values">
+    <input type="submit" value="I'm ready for the draft">
+	<div ng-repeat="player in players">
+	  <div class="player">
+	      {{ player.Name }} {{ player.AverageAuction }}
+	      <input type="number" ng-model="player.AverageAuction" name="size" min="0" max="200" integer value="{{ player.AverageAuction }}">
+	  </div>
+	</div>
+</form>

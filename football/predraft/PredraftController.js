@@ -16,6 +16,19 @@ football_app.controller('PredraftController', ['$scope', "football", function($s
           alert($scope.players[3].AverageAuction);
         }
         
+        //Sorting/Filtering:
+        $scope.updateAverageAuction = function () {
+            $scope.predraftForm.$commitViewValue();
+        }
+        
+        $scope.predicate = 'FantasyPoints';
+        $scope.reverse = true;
+        $scope.order = function(predicate) {
+          $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+          $scope.predicate = predicate;
+          $scope.predraftForm.$commitViewValue();
+        };
+        
     });
    
     $scope.submitForm = function(isValid) {
@@ -28,6 +41,5 @@ football_app.controller('PredraftController', ['$scope', "football", function($s
          window.location.hash = "#/draft";
         }
     }
-    
     
 }]);

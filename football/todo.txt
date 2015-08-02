@@ -1,1 +1,2 @@
-Add sort/filter functionality to both Predraft and Draft; should draw from common codebase.
+Figure out how to get sort/filter functionality into directive so it can be used in both Predraft and Draft views.
+	-May want to combine Predraft and Draft into single Controller anyway, which might make directive unnecessary.

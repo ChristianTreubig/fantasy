@@ -6,4 +6,10 @@ football_app.factory('football', ['$http', function($http) {
             .error(function(err) {
               return err;
             });
-}]);
+}])
+.factory('footballConfig', function footballConfigFactory() {
+    return {
+        numOfTeams:12,
+        draftReady:false
+    }
+});

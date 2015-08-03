@@ -1,11 +1,14 @@
-football_app.controller('PredraftController', ['$scope', "football", function($scope, football) {
-    football.success(function(data) {
+football_app.controller('PredraftController', ['$scope', "football", "footballConfig", function($scope, football, footballConfig) {
+    football.success(function(data) { //Calling .success() here because that's the "promise" returned by $http service
         $scope.players = data;
         angular.forEach($scope.players,function(value, index){
             if (value.AverageAuction == null) {
                 value.AverageAuction = 0;
             }
-        })
+        });
+        $scope.footballConfig = footballConfig;
+        $scope.footballConfig.numOfTeams = footballConfig.numOfTeams;
+        //$scope.numOfTeams = footballConfig.numOfTeams;
         
         $scope.original = angular.copy($scope.players);
         
@@ -32,12 +35,13 @@ football_app.controller('PredraftController', ['$scope', "football", function($s
     });
    
     $scope.submitForm = function(isValid) {
+        //If player value is empty, set it to zero.
         if (!isValid) {
-         //alert("NOT valid");
+         alert("NOT valid");
         }
         else{
-         //alert("valid");
-         $scope.draftReady = true;
+         alert("valid");
+         $scope.footballConfig.draftReady = true;
          window.location.hash = "#/draft";
         }
     }

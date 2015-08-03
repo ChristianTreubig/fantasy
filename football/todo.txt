@@ -1,3 +1,5 @@
+Total dollars in draft will be numOfTeams * 200; then work math from there.
+
 Handle required fields on predraft form.
 
 Figure out how to get sort/filter functionality into directive so it can be used in both Predraft and Draft views.

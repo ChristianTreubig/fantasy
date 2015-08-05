@@ -2,7 +2,7 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
     football.success(function(data) {
         $scope.players = data;
         $scope.footballConfig = footballConfig;
-        //alert($scope.players[3].AverageAuction);
+        $scope.totalDollars = $scope.footballConfig.numOfTeams * 200;
         
         //Get proportion of predraft values allocated to each position:
         var calculatePositionProportions = function() {
@@ -62,12 +62,6 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
         }
         
         calculatePlayerProportions();
-        //alert($scope.players[0].AverageAuction);
-        //alert(QB_total);
-        //alert($scope.players[0].Prop);
-        
-        alert($scope.footballConfig.numOfTeams);
-        alert($scope.footballConfig.draftReady);
         
     });
 }]);

@@ -1,3 +1,6 @@
-<div ng-repeat="player in players">
-	{{ player.Name }} {{ player.AverageAuction | currency:"$":0 }}
+<!--<sort-filter players="players"></sort-filter>-->
+<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search">
+	<div class="player">
+		{{ player.Name }} {{ player.FantasyPoints }} {{ player.AverageAuction | currency:"$":0 }}
+	</div>
 </div>

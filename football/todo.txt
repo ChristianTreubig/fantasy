@@ -1,9 +1,17 @@
-Use a Lightbox to confirm draft picks:
-	https://github.com/compact/angular-bootstrap-lightbox
+Radios in Modal need to be require (or have default value upon submission if neither checked).
+	-In ModalInstanceCtrl, should probably keep player separate from parent player scope until form is submitted,
+	which would help with binding issues (i.e. having to put ng-model-options="{ updateOn: ''}" on everything)
 
 Handle required fields on predraft form.
 
-Figure out how to get sort/filter functionality into directive so it can be used in both Predraft and Draft views.
-	-May want to combine Predraft and Draft into single Controller anyway, which might make directive unnecessary.
+In Firefox, values in predraft form don't update on blur (i.e. when you just lcik the up/down arrows and then click away).
+
+Progress bar to show total $ and user $ remaining in draft (+ other cool stuff):
+	http://angular-ui.github.io/bootstrap/
+	https://github.com/angular-ui/bootstrap/tree/master/template
+
+Add ability to undo previous pick.
+
+Move repeated functions to services.
 	
 In Prod, test if multiple connection work at the same time.

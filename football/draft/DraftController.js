@@ -3,6 +3,17 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
         $scope.players = data;
         $scope.footballConfig = footballConfig;
         $scope.totalDollars = $scope.footballConfig.numOfTeams * 200;
+        angular.forEach($scope.players,function(value, index){
+                value.Available = true;
+        });
+        
+        //Sorting/Filtering:
+        $scope.predicate = 'FantasyPoints';
+        $scope.reverse = true;
+        $scope.order = function(predicate) {
+          $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
+          $scope.predicate = predicate;
+        };
         
         //Get proportion of predraft values allocated to each position:
         var calculatePositionProportions = function() {

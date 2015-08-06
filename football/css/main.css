@@ -2,6 +2,8 @@ body {
     background:yellow;
 }
 
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; } /* Required for UI Bootstrap */
+
 .sort {
     background:white;
     cursor:pointer;

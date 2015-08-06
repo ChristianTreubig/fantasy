@@ -1,0 +1,14 @@
+TESTING...
+<form novalidate name="modalForm">
+{{ player.Name }}
+<input type="number" ng-model="player.Price" ng-model-options="{ updateOn: ''}" name="playerPrice" min="0" max="200" integer value="{{ player.Price }}">
+<div>
+	Drafted by:
+	<input type="radio" ng-model="player.Owner" name="owner" ng-value="'me'" ng-model-options="{ updateOn: ''}">Me
+    <input type="radio" ng-model="player.Owner" name="owner" ng-value="'other'" ng-model-options="{ updateOn: ''}">Someone Else
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary" ng-click="submit(modalForm.$valid, player)">Player drafted</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
+</form>

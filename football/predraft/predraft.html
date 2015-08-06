@@ -1,8 +1,7 @@
 <div>Edit pre-draft player values below:</div>
-<a href="#/draft">I'm ready for the draft.</a>
-<form novalidate name="predraftForm" ng-submit="submitForm(predraftForm.$valid)">
+<form novalidate name="predraftForm">
 	<input type="button" ng-click="reset()" value="Reset values">
-    <input type="submit" value="I'm ready for the draft">
+    <input type="button" ng-click="submitForm(predraftForm.$valid)" value="I'm ready for the draft">
     <div id="num_of_teams_cont">
     	<label>Number of teams (REQUIRED): <input type="number" ng-model="footballConfig.numOfTeams" name="numOfTeams" min="2" max="30" integer value="12" required /></label>
     </div>
@@ -23,7 +22,7 @@
 	<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search">
 	  <div class="player">
 	      {{ player.Name }} {{ player.Pos }} {{ player.FantasyPoints }} {{ player.AverageAuction }}
-	      <input type="number" ng-model="player.AverageAuction" ng-model-options="{ updateOn: 'submit'}" name="playerAverageAuction" min="0" max="200" integer value="{{ player.AverageAuction }}">
+	      <input type="number" ng-model="player.AverageAuction" ng-model-options="{ updateOn: 'blur'}" name="playerAverageAuction" min="0" max="200" integer value="{{ player.AverageAuction }}" required>
 	  </div>
 	</div>
 </form>

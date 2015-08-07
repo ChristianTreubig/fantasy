@@ -1,8 +1,4 @@
-Radios in Modal need to be require (or have default value upon submission if neither checked).
-	-In ModalInstanceCtrl, should probably keep player separate from parent player scope until form is submitted,
-	which would help with binding issues (i.e. having to put ng-model-options="{ updateOn: ''}" on everything)
-
-Handle required fields on predraft form.
+Handle required fields on forms.
 
 In Firefox, values in predraft form don't update on blur (i.e. when you just lcik the up/down arrows and then click away).
 

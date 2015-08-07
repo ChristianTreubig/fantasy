@@ -1,6 +1,4 @@
-football_app.controller('ModalCtrl', ["$scope", "$modal", "$log", "football", function ($scope, $modal, $log, football) {
-  football.success(function(data) {
-      $scope.players = data;
+football_app.controller('ModalCtrl', ["$scope", "$modal", "$log", function ($scope, $modal, $log) {
       angular.forEach($scope.players,function(value, index){
          value.Price = value.AverageAuction;
          value.Owner = null;
@@ -16,8 +14,8 @@ football_app.controller('ModalCtrl', ["$scope", "$modal", "$log", "football", fu
           controller: 'ModalInstanceCtrl',
           size: "lg",
           resolve: {
-            player: function () {
-              return $scope.players[index];
+            playerIndex:function () {
+                return index;
             }
           }
         });
@@ -28,33 +26,30 @@ football_app.controller('ModalCtrl', ["$scope", "$modal", "$log", "football", fu
           $log.info('Modal dismissed at: ' + new Date());
         });
       };
-    
-      /*$scope.toggleAnimation = function () {
-        $scope.animationsEnabled = !$scope.animationsEnabled;
-      };*/
-    });
 }]);
 
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-football_app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, player) {
-
-  $scope.player = player;
-
-  $scope.submit = function (isValid, selectedPlayer) {
-      if (!isValid) {
-          alert("NOT valid");
-      }
-      else{
-          $scope.modalForm.$commitViewValue();
-          player.Available = false;
-          player.Owner = selectedPlayer.Owner;
-          $modalInstance.close();
-      }
-  };
-
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  };
-});
+football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playerIndex", "football", function($scope, $modalInstance, playerIndex, football) {
+    football.success(function(data) {
+      $scope.players = data;
+      $scope.player = angular.copy($scope.players[playerIndex]);
+      //alert(angular.copy($scope.players[playerIndex].Name));
+    
+      $scope.submit = function (isValid, selectedPlayer) {
+          if (!isValid) {
+              alert("NOT valid");
+          }
+          else {
+              $scope.player.Available = false;
+              angular.copy($scope.player, $scope.players[playerIndex]);
+              $modalInstance.close();
+          }
+      };
+    
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    });
+}]);

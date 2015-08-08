@@ -15,9 +15,22 @@
 	<div class="sort" ng-click="order('AverageAuction')">Average Auction</div>
 </div>
 
-<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search">
+<h3>Available</h3>
+<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:available ">
 	<div class="player">
 		{{ player.Name }} {{ player.FantasyPoints }} {{ player.AverageAuction | currency:"$":0 }} {{ player.Available }} {{ player.Price }} {{ player.Owner }}
-		<button ng-controller="ModalCtrl" ng-click="open($index)">Draft</button>
+		<button ng-controller="ModalCtrl" ng-click="open(player)">Draft</button>
+	</div>
+</div>
+<h3>Taken</h3>
+<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:notAvailable ">
+	<div class="player">
+		{{ player.Name }} {{ player.FantasyPoints }} {{ player.AverageAuction | currency:"$":0 }} {{ player.Available }} {{ player.Price }} {{ player.Owner }}
+	</div>
+</div>
+<h3>My Team</h3>
+<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:myTeam ">
+	<div class="player">
+		{{ player.Name }} {{ player.FantasyPoints }} {{ player.AverageAuction | currency:"$":0 }} {{ player.Available }} {{ player.Price }} {{ player.Owner }}
 	</div>
 </div>

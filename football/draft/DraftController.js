@@ -14,6 +14,15 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
           $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
           $scope.predicate = predicate;
         };
+        $scope.available = function(player) {
+            return player.Available === true;
+        }
+        $scope.notAvailable = function(player) {
+            return player.Available === false;
+        }
+        $scope.myTeam = function(player) {
+            return player.Owner === "me";
+        }
         
         //Get proportion of predraft values allocated to each position:
         var calculatePositionProportions = function() {

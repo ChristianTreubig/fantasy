@@ -1,31 +1,31 @@
-football_app.controller('ModalCtrl', ["$scope", "$modal", "$log", function ($scope, $modal, $log) {
-      angular.forEach($scope.players,function(value, index){
-         value.Price = value.AverageAuction;
-         value.Owner = null;
-      });
-    
-      $scope.animationsEnabled = true;
-    
-      $scope.open = function (index) {
-    
-        var modalInstance = $modal.open({
-          animation: true,
-          templateUrl: 'draft/modalContent.html',
-          controller: 'ModalInstanceCtrl',
-          size: "lg",
-          resolve: {
-            playerIndex:function () {
-                return index;
-            }
-          }
-        });
-    
-        modalInstance.result.then(function (selectedItem) {
-          $scope.selected = selectedItem;
-        }, function () {
-          $log.info('Modal dismissed at: ' + new Date());
-        });
-      };
+football_app.controller('ModalCtrl', ["$scope", "$modal", "$log", "football", function ($scope, $modal, $log, football) {
+          angular.forEach($scope.players,function(value, index){
+             value.Price = value.AverageAuction;
+             value.Owner = null;
+          });
+        
+          $scope.animationsEnabled = true;
+          $scope.open = function (item) {
+            var index = $scope.players.indexOf(item);
+        
+            var modalInstance = $modal.open({
+              animation: true,
+              templateUrl: 'draft/modalContent.html',
+              controller: 'ModalInstanceCtrl',
+              size: "lg",
+              resolve: {
+                playerIndex:function () {
+                    return index;
+                }
+              }
+            });
+        
+            modalInstance.result.then(function (selectedItem) {
+              $scope.selected = selectedItem;
+            }, function () {
+              $log.info('Modal dismissed at: ' + new Date());
+            });
+          }; 
 }]);
 
 // Please note that $modalInstance represents a modal window (instance) dependency.
@@ -35,7 +35,6 @@ football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playe
     football.success(function(data) {
       $scope.players = data;
       $scope.player = angular.copy($scope.players[playerIndex]);
-      //alert(angular.copy($scope.players[playerIndex].Name));
     
       $scope.submit = function (isValid, selectedPlayer) {
           if (!isValid) {

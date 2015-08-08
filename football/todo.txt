@@ -6,8 +6,6 @@ Progress bar to show total $ and user $ remaining in draft (+ other cool stuff):
 	http://angular-ui.github.io/bootstrap/
 	https://github.com/angular-ui/bootstrap/tree/master/template
 
-Add ability to undo previous pick.
-
 Move repeated functions to services.
 	
 In Prod, test if multiple connection work at the same time.

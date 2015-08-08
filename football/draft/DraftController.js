@@ -1,10 +1,12 @@
-football_app.controller('DraftController', ['$scope', "football", "footballConfig", function($scope, football, footballConfig) {
+football_app.controller('DraftController', ['$scope', "football", "footballConfig", "draftMeta", function($scope, football, footballConfig, draftMeta) {
     football.success(function(data) {
         $scope.players = data;
-        $scope.footballConfig = footballConfig;
+        $scope.footballConfig = footballConfig; //Need to define footballConfig service scope because we're in football block?
+        $scope.draftMeta = draftMeta;// ' ' '
         $scope.totalDollars = $scope.footballConfig.numOfTeams * 200;
+        $scope.draftMeta.totalDollarsRemaining = $scope.totalDollars;
         angular.forEach($scope.players,function(value, index){
-                value.Available = true;
+            value.Available = true;
         });
         
         //Sorting/Filtering:
@@ -82,6 +84,25 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
         }
         
         calculatePlayerProportions();
+        
+        //Undo previous pick:
+        $scope.undo = function() {
+            var player = $scope.draftMeta.previousPlayerTaken;
+            if (player) {
+                angular.forEach($scope.players,function(value, index){
+                    if (value.Name === player.Name) {
+                        $scope.players[index].Available = true;
+                    }
+                });
+                $scope.draftMeta.totalDollarsRemaining += player.Price;
+                if (player.Owner === "me") {
+                    $scope.draftMeta.playerDollarsRemaining += player.Price;
+                }
+                $scope.draftMeta.previousPlayerTaken = null;
+            }
+        }
+        
+        //alert($scope.draftMeta.playerDollarsRemaining);
         
     });
 }]);

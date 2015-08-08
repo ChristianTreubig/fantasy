@@ -4,6 +4,12 @@ body {
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; } /* Required for UI Bootstrap */
 
+#undo {
+    background:white;
+    cursor:pointer;
+    display:inline-block;
+}
+
 .sort {
     background:white;
     cursor:pointer;

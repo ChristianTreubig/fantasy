@@ -31,10 +31,11 @@ football_app.controller('ModalCtrl', ["$scope", "$modal", "$log", "football", fu
 // Please note that $modalInstance represents a modal window (instance) dependency.
 // It is not the same as the $modal service used above.
 
-football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playerIndex", "football", function($scope, $modalInstance, playerIndex, football) {
+football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playerIndex", "football", "draftMeta", function($scope, $modalInstance, playerIndex, football, draftMeta) {
     football.success(function(data) {
       $scope.players = data;
       $scope.player = angular.copy($scope.players[playerIndex]);
+      $scope.draftMeta = draftMeta;
     
       $scope.submit = function (isValid, selectedPlayer) {
           if (!isValid) {
@@ -42,6 +43,11 @@ football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playe
           }
           else {
               $scope.player.Available = false;
+              $scope.draftMeta.totalDollarsRemaining -= $scope.player.Price;
+              if ($scope.player.Owner === "me") {
+                  $scope.draftMeta.playerDollarsRemaining -= $scope.player.Price;
+              }
+              $scope.draftMeta.previousPlayerTaken = $scope.player;
               angular.copy($scope.player, $scope.players[playerIndex]);
               $modalInstance.close();
           }
@@ -50,5 +56,6 @@ football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playe
       $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
       };
+      
     });
 }]);

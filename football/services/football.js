@@ -12,4 +12,11 @@ football_app.factory('football', ['$http', function($http) {
         numOfTeams:12,
         draftReady:false
     }
+})
+.factory("draftMeta", function() {
+    return{
+        playerDollarsRemaining: 200,
+        totalDollarsRemaining: null,
+        previousPlayerTaken: null //For undo functionality.
+    }
 });

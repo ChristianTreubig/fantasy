@@ -1,5 +1,7 @@
 <!--<sort-filter players="players"></sort-filter>-->
-
+<div>League Dollars Remaining: {{ draftMeta.totalDollarsRemaining }} / {{ totalDollars }}</div>
+<div>My Dollars Remaining: {{ draftMeta.playerDollarsRemaining }} / 200</div>
+<div id="undo" ng-click="undo()">Undo previous pick</div>
 <div id="filter_cont">
 	<label>Search: <input ng-model="search.Name" ng-change="updateAverageAuction()"></label>
 	<label for="All" class="filter">All<input id="All" type="radio" value="" ng-model="search.Pos"/></label>

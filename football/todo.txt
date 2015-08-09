@@ -1,11 +1,9 @@
 Each player object should have a RecommendedPrice attribute (initially set equal to AverageAuction), which will update with each pick.
 
-Handle required fields on forms.
+Deal with page reloads, closes, back buttons, etc.
 
 Cool front end stuff:
 	http://angular-ui.github.io/bootstrap/
 	https://github.com/angular-ui/bootstrap/tree/master/template
-
-Move repeated functions to services.
 	
 In Prod, test if multiple connection work at the same time.

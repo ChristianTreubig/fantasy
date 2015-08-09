@@ -2,13 +2,18 @@ TESTING...
 <form novalidate name="modalForm">
 {{ player.Name }}, {{ player.Owner }}, {{ player.Price }}
 <input type="number" ng-model="player.Price" name="playerPrice" min="0" max="200" integer value="{{ player.Price }}" required>
+<span ng-show="modalForm.$submitted || modalForm.playerPrice.$touched">
+ <span ng-show="modalForm.playerPrice.$error.required">Can't be empty.</span>
+ <span ng-show="modalForm.playerPrice.$error.number">Must be a number.</span>
+ <span ng-show="modalForm.playerPrice.$error.max">Must be 200 or less.</span>
+</span>
 <div>
 	Drafted by:
 	<label for="me"><input type="radio" ng-model="player.Owner" name="owner" value="me" id="me" required>Me</label>
     <label for="other"><input type="radio" ng-model="player.Owner" name="owner" value="other" id="other" required>Someone Else</label>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="submit(modalForm.$valid, player)">Player drafted</button>
+    <button type="button" class="btn btn-primary" ng-click="submit(modalForm.$valid, player)"  ng-disabled="modalForm.$invalid">Player drafted</button>
     <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>
 </form>

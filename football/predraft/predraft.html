@@ -4,6 +4,12 @@
     <input type="button" ng-click="submitForm(predraftForm.$valid)" value="I'm ready for the draft">
     <div id="num_of_teams_cont">
     	<label>Number of teams (REQUIRED): <input type="number" ng-model="footballConfig.numOfTeams" name="numOfTeams" min="2" max="30" integer value="12" required /></label>
+    	<span ng-show="predraftForm.$submitted || predraftForm.numOfTeams.$touched">
+	     <span ng-show="predraftForm.numOfTeams.$error.required">Can't be empty.</span>
+	     <span ng-show="predraftForm.numOfTeams.$error.number">Must be a number.</span>
+	     <span ng-show="predraftForm.numOfTeams.$error.max">Must be 30 or less.</span>
+	     <span ng-show="predraftForm.numOfTeams.$error.min">Must be 2 or greater.</span>
+	    </span>
     </div>
     <div id="filter_cont">
     	<label>Search: <input ng-model="search.Name" ng-change="updateAverageAuction()"></label>
@@ -20,9 +26,20 @@
     	<div class="sort" ng-click="order('AverageAuction')">Average Auction</div>
     </div>
 	<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search">
+	  
+	  <ng-form name="playerFieldForm"> <!-- https://scotch.io/tutorials/building-dynamic-angular-forms-with-ngrepeat-and-ngform -->
+	  
 	  <div class="player">
 	      {{ player.Name }} {{ player.Pos }} {{ player.FantasyPoints }} {{ player.AverageAuction }}
 	      <input type="number" ng-model="player.AverageAuction" ng-model-options="{ updateOn: 'blur change'}" name="playerAverageAuction" min="0" max="200" integer value="{{ player.AverageAuction }}" required>
+	      <span ng-show="playerFieldForm.$submitted || playerFieldForm.playerAverageAuction.$touched">
+	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.required">Can't be empty.</span>
+	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.number">Must be a number.</span>
+	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.max">Must be 200 or less.</span>
+	      </span>
 	  </div>
+	  
+	  </ng-form>
+	  
 	</div>
 </form>

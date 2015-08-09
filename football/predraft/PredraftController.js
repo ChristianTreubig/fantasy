@@ -15,7 +15,7 @@ football_app.controller('PredraftController', ['$scope', "football", "footballCo
         $scope.reset = function(data) {
           angular.copy($scope.original, $scope.players);
           $scope.predraftForm.$setPristine();
-          //$scope.predraftForm.$setUntouched();
+          $scope.predraftForm.$setUntouched();
         }
         
         //Sorting/Filtering:

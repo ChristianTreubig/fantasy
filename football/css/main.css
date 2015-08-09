@@ -21,3 +21,7 @@ body {
     cursor:pointer;
     display:inline-block; 
 }
+
+input.ng-invalid {
+    background:red;
+}

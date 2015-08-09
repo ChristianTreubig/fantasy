@@ -22,7 +22,7 @@
 	<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search">
 	  <div class="player">
 	      {{ player.Name }} {{ player.Pos }} {{ player.FantasyPoints }} {{ player.AverageAuction }}
-	      <input type="number" ng-model="player.AverageAuction" ng-model-options="{ updateOn: 'blur'}" name="playerAverageAuction" min="0" max="200" integer value="{{ player.AverageAuction }}" required>
+	      <input type="number" ng-model="player.AverageAuction" ng-model-options="{ updateOn: 'blur change'}" name="playerAverageAuction" min="0" max="200" integer value="{{ player.AverageAuction }}" required>
 	  </div>
 	</div>
 </form>

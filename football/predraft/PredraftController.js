@@ -16,7 +16,6 @@ football_app.controller('PredraftController', ['$scope', "football", "footballCo
           angular.copy($scope.original, $scope.players);
           $scope.predraftForm.$setPristine();
           //$scope.predraftForm.$setUntouched();
-          alert($scope.players[3].AverageAuction);
         }
         
         //Sorting/Filtering:

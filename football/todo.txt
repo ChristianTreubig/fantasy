@@ -2,8 +2,6 @@ Each player object should have a RecommendedPrice attribute (initially set equal
 
 Handle required fields on forms.
 
-In Firefox, values in predraft form don't update on blur (i.e. when you just lcik the up/down arrows and then click away).
-
 Cool front end stuff:
 	http://angular-ui.github.io/bootstrap/
 	https://github.com/angular-ui/bootstrap/tree/master/template

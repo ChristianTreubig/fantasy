@@ -1,6 +1,8 @@
 <!--<sort-filter players="players"></sort-filter>-->
-<div>League Dollars Remaining: {{ draftMeta.totalDollarsRemaining }} / {{ totalDollars }}</div>
-<div>My Dollars Remaining: {{ draftMeta.playerDollarsRemaining }} / 200</div>
+<div>League Dollars Remaining:</div>
+<progressbar max="totalDollars" value="draftMeta.totalDollarsRemaining"><span style="color:white; white-space:nowrap;">{{ draftMeta.totalDollarsRemaining }} / {{ totalDollars }}</span></progressbar>
+<div>My Dollars Remaining:</div>
+<progressbar max="200" value="draftMeta.playerDollarsRemaining"><span style="color:white; white-space:nowrap;">{{ draftMeta.playerDollarsRemaining }} / 200</span></progressbar>
 <div id="undo" ng-click="undo()">Undo previous pick</div>
 <div id="filter_cont">
 	<label>Search: <input ng-model="search.Name" ng-change="updateAverageAuction()"></label>

@@ -1,12 +1,8 @@
 football_app.controller('ModalCtrl', ["$scope", "$modal", "$log", "football", function ($scope, $modal, $log, football) {
-          angular.forEach($scope.players,function(value, index){
-             value.Price = value.AverageAuction;
-             value.Owner = null;
-          });
-        
           $scope.animationsEnabled = true;
           $scope.open = function (item) {
             var index = $scope.players.indexOf(item);
+            item.Price = item.AverageAuction;
         
             var modalInstance = $modal.open({
               animation: true,
@@ -34,7 +30,8 @@ football_app.controller('ModalCtrl', ["$scope", "$modal", "$log", "football", fu
 football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playerIndex", "football", "draftMeta", function($scope, $modalInstance, playerIndex, football, draftMeta) {
     football.success(function(data) {
       $scope.players = data;
-      $scope.player = angular.copy($scope.players[playerIndex]);
+      $scope.player = {};
+      angular.copy($scope.players[playerIndex], $scope.player);
       $scope.draftMeta = draftMeta;
     
       $scope.submit = function (isValid, selectedPlayer) {
@@ -47,7 +44,7 @@ football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playe
               if ($scope.player.Owner === "me") {
                   $scope.draftMeta.playerDollarsRemaining -= $scope.player.Price;
               }
-              $scope.draftMeta.previousPlayerTaken = $scope.player;
+              $scope.draftMeta.previousPlayerTaken = angular.copy($scope.player);
               angular.copy($scope.player, $scope.players[playerIndex]);
               $modalInstance.close();
           }

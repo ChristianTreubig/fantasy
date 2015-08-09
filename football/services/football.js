@@ -41,22 +41,22 @@ football_app.factory('football', ['$http', function($http) {
         });
         All_total = QB_total + RB_total + WR_total + TE_total + K_total;
         return {
-            "All_total": All_total,
-            "QB_total": QB_total,
-            "RB_total": RB_total,
-            "WR_total": WR_total,
-            "TE_total": TE_total,
-            "K_total": K_total
+            All_total: All_total,
+            QB_total: QB_total,
+            RB_total: RB_total,
+            WR_total: WR_total,
+            TE_total: TE_total,
+            K_total: K_total
         }
     }
     
     //Get proportion of predraft values allocated to each position:
     var calculatePositionProportions = function(players) {
-        var QB_total = calculatePositionValues(players)["QB_total"];
-        var RB_total = calculatePositionValues(players)["RB_total"];
-        var WR_total = calculatePositionValues(players)["WR_total"];
-        var TE_total = calculatePositionValues(players)["TE_total"];
-        var K_total = calculatePositionValues(players)["K_total"];
+        var QB_total = calculatePositionValues(players).QB_total;
+        var RB_total = calculatePositionValues(players).RB_total;
+        var WR_total = calculatePositionValues(players).WR_total;
+        var TE_total = calculatePositionValues(players).TE_total;
+        var K_total = calculatePositionValues(players).K_total;
         var All_total = QB_total + RB_total + WR_total + TE_total + K_total;
         QB_prop = QB_total / All_total;
         RB_prop = RB_total / All_total;
@@ -64,11 +64,11 @@ football_app.factory('football', ['$http', function($http) {
         TE_prop = TE_total / All_total;
         K_prop = K_total / All_total;
         return {
-            "QB_prop": QB_prop,
-            "RB_prop": RB_prop,
-            "WR_prop": WR_prop,
-            "TE_prop": TE_prop,
-            "K_prop": K_prop,
+            QB_prop: QB_prop,
+            RB_prop: RB_prop,
+            WR_prop: WR_prop,
+            TE_prop: TE_prop,
+            K_prop: K_prop,
         }
     }
     
@@ -76,19 +76,19 @@ football_app.factory('football', ['$http', function($http) {
     var calculatePlayerProportions = function(players) {
         angular.forEach(players, function(value, index){
             if (value.Pos == "QB") {
-                players[index].Prop = value.AverageAuction / calculatePositionValues(players)["QB_total"];
+                players[index].Prop = value.AverageAuction / calculatePositionValues(players).QB_total;
             }
             else if (value.Pos == "RB") {
-                players[index].Prop = value.AverageAuction / calculatePositionValues(players)["RB_total"];
+                players[index].Prop = value.AverageAuction / calculatePositionValues(players).RB_total;
             }
             else if (value.Pos == "WR") {
-                players[index].Prop = value.AverageAuction / calculatePositionValues(players)["WR_total"];
+                players[index].Prop = value.AverageAuction / calculatePositionValues(players).WR_total;
             }
             else if (value.Pos == "TE") {
-                players[index].Prop = value.AverageAuction / calculatePositionValues(players)["TE_total"];
+                players[index].Prop = value.AverageAuction / calculatePositionValues(players).TE_total;
             }
             else if (value.Pos == "K") {
-                players[index].Prop = value.AverageAuction / calculatePositionValues(players)["K_total"];
+                players[index].Prop = value.AverageAuction / calculatePositionValues(players).K_total;
             }
         });
         return players;

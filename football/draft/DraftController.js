@@ -7,7 +7,9 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
         $scope.draftMeta.totalDollarsRemaining = $scope.totalDollars;
         angular.forEach($scope.players,function(value, index){
             value.Available = true;
+            //value.Owner = true;
         });
+        //alert($scope.players[0].Name + $scope.players[0].Owner);
         
         //Sorting/Filtering:
         $scope.predicate = 'FantasyPoints';
@@ -26,8 +28,8 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
             return player.Owner === "me";
         }
         
-        alert($scope.draftMeta.calculatePositionProportions($scope.players)["RB_prop"]);
-        alert($scope.draftMeta.calculatePlayerProportions($scope.players)[0].Prop);
+        //alert($scope.draftMeta.calculatePositionProportions($scope.players).RB_prop);
+        //alert($scope.draftMeta.calculatePlayerProportions($scope.players)[0].Prop);
         
         //Undo previous pick:
         $scope.undo = function() {
@@ -35,6 +37,7 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
             if (player) {
                 angular.forEach($scope.players,function(value, index){
                     if (value.Name === player.Name) {
+                        console.log(player.Owner);
                         $scope.players[index].Available = true;
                     }
                 });
@@ -43,6 +46,7 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
                     $scope.draftMeta.playerDollarsRemaining += player.Price;
                 }
                 $scope.draftMeta.previousPlayerTaken = null;
+                console.log(player.Owner);
             }
         }
         

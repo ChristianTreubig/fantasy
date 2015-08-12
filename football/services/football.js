@@ -94,11 +94,56 @@ football_app.factory('football', ['$http', function($http) {
         return players;
     }
     
+    //Algorithm to dynamically update RecommendedPrice after each pick:
+    //--- This needs to be tweeked and perfected!!! ---//
+    var updatePlayerValues = function(availablePlayers, totalDollarsRemaining, initialPositionProportions) {
+        //Recalculated playerProportions in ModalInstanceCtrl.
+        var QB_money = initialPositionProportions.QB_prop * totalDollarsRemaining;
+        var RB_money = initialPositionProportions.RB_prop * totalDollarsRemaining;
+        var WR_money = initialPositionProportions.WR_prop * totalDollarsRemaining;
+        var TE_money = initialPositionProportions.TE_prop * totalDollarsRemaining;
+        var K_money = initialPositionProportions.K_prop * totalDollarsRemaining;
+        console.log(totalDollarsRemaining);
+        console.log(initialPositionProportions.RB_prop);
+        console.log(RB_money);
+        angular.forEach(availablePlayers, function(value, index){
+            if (value.Pos === "QB") {
+                value.RecommendedPrice = value.Prop * QB_money;
+            }
+            else if (value.Pos === "RB") {
+                value.RecommendedPrice = value.Prop * RB_money;
+            }
+            else if (value.Pos === "WR") {
+                value.RecommendedPrice = value.Prop * WR_money;
+            }
+            else if (value.Pos === "TE") {
+                value.RecommendedPrice = value.Prop * TE_money;
+            }
+            else if (value.Pos === "K") {
+                value.RecommendedPrice = value.Prop * K_money;
+            }
+        });
+        /* After each pick:
+         * 1) Recalculate playerProportions (positionProportions will remain constant, for now).
+         * 2) Grab totalDollarsRemaining.
+         * 3) Calculate $ that should be allocated to each position by multiplying positionProportions.X by totalDollarsRemaining.
+         * 4) Calculate $ that should be allocated to each player by playerProportions.X by $ allocated to respective position.
+         * 5) Loop through available players to update RecommendedPrice.
+         * 
+         * Also need to reverse this logic for the undo functionality.
+         */
+    }
+    
     return{
         playerDollarsRemaining: 200,
         totalDollarsRemaining: null,
         previousPlayerTaken: null, //For undo functionality.
+        calculatePositionValues: calculatePositionValues,
         calculatePositionProportions: calculatePositionProportions,
-        calculatePlayerProportions: calculatePlayerProportions
+        calculatePlayerProportions: calculatePlayerProportions,
+        positionValues: null,
+        positionProportions: null,
+        playerProportions: null,
+        updatePlayerValues: updatePlayerValues
     }
 });

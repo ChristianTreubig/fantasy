@@ -13,7 +13,7 @@ TESTING...
     <label for="other"><input type="radio" ng-model="player.Owner" name="owner" value="other" id="other" required>Someone Else</label>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-primary" ng-click="submit(modalForm.$valid, player)"  ng-disabled="modalForm.$invalid">Player drafted</button>
+    <button type="button" class="btn btn-primary" ng-click="submit(modalForm.$valid)"  ng-disabled="modalForm.$invalid">Player drafted</button>
     <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>
 </form>

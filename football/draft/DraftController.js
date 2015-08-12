@@ -7,9 +7,13 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
         $scope.draftMeta.totalDollarsRemaining = $scope.totalDollars;
         angular.forEach($scope.players,function(value, index){
             value.Available = true;
-            //value.Owner = true;
+            value.RecommendedPrice = value.AverageAuction;
         });
-        //alert($scope.players[0].Name + $scope.players[0].Owner);
+        //$scope.draftMeta.positionValues = $scope.draftMeta.calculatePositionValues($scope.players); //Don't need this in controller?
+        $scope.draftMeta.positionProportions = $scope.draftMeta.calculatePositionProportions($scope.players);
+        $scope.draftMeta.playerProportions = $scope.draftMeta.calculatePlayerProportions($scope.players);
+        //$scope.draftMeta.calculatePositionProportions($scope.players);
+        //$scope.draftMeta.calculatePlayerProportions($scope.players);
         
         //Sorting/Filtering:
         $scope.predicate = 'FantasyPoints';
@@ -27,9 +31,6 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
         $scope.myTeam = function(player) {
             return player.Owner === "me";
         }
-        
-        //alert($scope.draftMeta.calculatePositionProportions($scope.players).RB_prop);
-        //alert($scope.draftMeta.calculatePlayerProportions($scope.players)[0].Prop);
         
         //Undo previous pick:
         $scope.undo = function() {

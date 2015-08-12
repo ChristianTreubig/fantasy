@@ -34,7 +34,7 @@ football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playe
       angular.copy($scope.players[playerIndex], $scope.player);
       $scope.draftMeta = draftMeta;
     
-      $scope.submit = function (isValid, selectedPlayer) {
+      $scope.submit = function (isValid) {
           if (!isValid) {
               alert("NOT valid");
           }
@@ -46,6 +46,21 @@ football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playe
               }
               $scope.draftMeta.previousPlayerTaken = angular.copy($scope.player);
               angular.copy($scope.player, $scope.players[playerIndex]);
+              
+              //---Update RecommendedPrice below---//
+              
+              var availablePlayers = [];
+              angular.forEach($scope.players, function(value, index){
+                if (value.Available === true) {
+                    availablePlayers.push($scope.players[index]);
+                }
+              });
+              $scope.draftMeta.playerProportions = $scope.draftMeta.calculatePlayerProportions(availablePlayers); //Re-weight player proportions.
+              console.log($scope.players[16].Name + ", " + $scope.players[16].Prop + ", " + $scope.players[16].RecommendedPrice);
+              $scope.draftMeta.updatePlayerValues(availablePlayers, $scope.draftMeta.totalDollarsRemaining, $scope.draftMeta.positionProportions);
+              
+              //-----------------------------------//
+              
               $modalInstance.close();
           }
       };

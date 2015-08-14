@@ -48,6 +48,15 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
                 }
                 $scope.draftMeta.previousPlayerTaken = null;
                 console.log(player.Owner);
+                //Resets RecommendedPrice to prior values.
+                var availablePlayers = [];
+                angular.forEach($scope.players, function(value, index){
+                  if (value.Available === true) {
+                      availablePlayers.push($scope.players[index]);
+                  }
+                });
+                $scope.draftMeta.playerProportions = $scope.draftMeta.calculatePlayerProportions(availablePlayers); //Re-weight player proportions.
+                $scope.draftMeta.updatePlayerValues(availablePlayers, $scope.draftMeta.totalDollarsRemaining, $scope.draftMeta.positionProportions);
             }
         }
         

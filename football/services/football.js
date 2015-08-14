@@ -129,8 +129,6 @@ football_app.factory('football', ['$http', function($http) {
          * 3) Calculate $ that should be allocated to each position by multiplying positionProportions.X by totalDollarsRemaining.
          * 4) Calculate $ that should be allocated to each player by playerProportions.X by $ allocated to respective position.
          * 5) Loop through available players to update RecommendedPrice.
-         * 
-         * Also need to reverse this logic for the undo functionality.
          */
     }
     

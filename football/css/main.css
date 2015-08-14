@@ -1,8 +1,18 @@
-body {
+html, body {
     background:yellow;
+    margin:0;
+    padding:0;
+}
+
+body {
+    font-size:x-large;
 }
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; } /* Required for UI Bootstrap */
+
+.clearer {
+    clear:both;
+}
 
 #undo {
     background:white;
@@ -10,18 +20,77 @@ body {
     display:inline-block;
 }
 
+/* Filtering: */
 .sort {
     background:white;
     cursor:pointer;
-    display:inline-block;
+}
+
+#filter_cont input[type=radio] {
+  display:none;
+  height:2em;
+  margin:1em 0;
 }
 
 .filter {
     background:white;
     cursor:pointer;
-    display:inline-block; 
+    display:block;
+    float:left;
+    height:2em;
+    line-height: 2em;
+    text-align:center;
+    width:5em;
 }
 
 input.ng-invalid {
     background:red;
+}
+/******************************/
+
+/* Player items in ng-repeat: */
+#sort_cont {
+     margin-top:1em;
+}
+
+.player {
+    height:2em;
+}
+
+.player {
+    line-height: 2em;
+}
+
+.stat, .stat_header {
+    display:block;
+    float:left;
+    height:2em;
+    text-align:center;
+    width:5em;
+}
+
+#sort_cont, .sort {
+    height:3em;
+}
+
+.stat {
+    background:teal;
+}
+
+.stat.name, .stat_header.name {
+    width:12em;
+}
+
+/******************************/
+
+@media all and (max-width: 90em) {
+    body {
+        font-size:large;
+    }
+}
+
+@media all and (max-width: 45em){
+    body {
+        font-size:medium;
+    }
 }

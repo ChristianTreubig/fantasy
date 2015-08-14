@@ -19,16 +19,16 @@ football_app.controller('PredraftController', ['$scope', "football", "footballCo
         }
         
         //Sorting/Filtering:
-        $scope.updateAverageAuction = function () {
-            $scope.predraftForm.$commitViewValue();
-        }
+        //$scope.updateAverageAuction = function () {
+        //    $scope.predraftForm.$commitViewValue(); //Probably don't need this.
+        //}
         
         $scope.predicate = 'FantasyPoints';
         $scope.reverse = true;
         $scope.order = function(predicate) {
           $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;
           $scope.predicate = predicate;
-          $scope.predraftForm.$commitViewValue();
+          //$scope.predraftForm.$commitViewValue();  //Probably don't need this.
         };
         
     });

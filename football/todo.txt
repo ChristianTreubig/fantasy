@@ -1,4 +1,9 @@
-Each player object should have a RecommendedPrice attribute (initially set equal to AverageAuction), which will update with each pick.
+Debug sorting:
+	In the JSON file, some fields that should be numbers are strings; these fields don't sort correctly.
+	
+Remove updateAverageAuction() from ng-clicks in predraft (it's not needed).
+
+Hide bulk of stats when screen shrinks.
 
 Deal with page reloads, closes, back buttons, etc.
 

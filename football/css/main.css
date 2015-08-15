@@ -43,6 +43,10 @@ body {
     width:5em;
 }
 
+.filtered_pos {
+    background:blue;
+}
+
 input.ng-invalid {
     background:red;
 }
@@ -53,28 +57,34 @@ input.ng-invalid {
      margin-top:1em;
 }
 
-.player {
-    height:2em;
+.player, #sort_cont {
+    font-size:0.8em;
 }
 
 .player {
-    line-height: 2em;
+    height:2em;
 }
 
 .stat, .stat_header {
+    background:teal;
     display:block;
     float:left;
-    height:2em;
     text-align:center;
     width:5em;
 }
 
-#sort_cont, .sort {
+.stat {
+    height:2em;
+    line-height: 2em;
+}
+
+.stat_header {
+    background:green;
     height:3em;
 }
 
-.stat {
-    background:teal;
+#sort_cont {
+    height:3em;
 }
 
 .stat.name, .stat_header.name {
@@ -89,8 +99,14 @@ input.ng-invalid {
     }
 }
 
-@media all and (max-width: 45em){
+@media all and (max-width: 75em){
     body {
         font-size:medium;
+    }
+}
+
+@media all and (max-width: 60em){
+    .game_stat {
+        display:none;
     }
 }

@@ -21,7 +21,7 @@
 
 <h3>Available</h3>
 <div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:available">
-	<div class="player">
+	<div class="player"> <!-- Don't need this div; move the player class into the parent div. -->
 		{{ player.Name }}
 		{{ player.FantasyPoints }}
 		{{ player.AverageAuction | currency:"$":0 }}

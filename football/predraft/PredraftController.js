@@ -22,7 +22,7 @@ football_app.controller('PredraftController', ['$scope', "football", "footballCo
         //$scope.updateAverageAuction = function () {
         //    $scope.predraftForm.$commitViewValue(); //Probably don't need this.
         //}
-        
+        $scope.selectedPos = "All";
         $scope.predicate = 'FantasyPoints';
         $scope.reverse = true;
         $scope.order = function(predicate) {

@@ -5,7 +5,7 @@
 <progressbar max="200" value="draftMeta.playerDollarsRemaining"><span style="color:white; white-space:nowrap;">{{ draftMeta.playerDollarsRemaining }} / 200</span></progressbar>
 <div id="undo" ng-click="undo()">Undo previous pick</div>
 <div id="filter_cont">
-	<label>Search: <input ng-model="search.Name" ng-change="updateAverageAuction()"></label>
+	<label>Search: <input ng-model="search.Name"></label>
 	<label for="All" class="filter">All<input id="All" type="radio" value="" ng-model="search.Pos"/></label>
 	<label for="QB" class="filter">QB<input id="QB" type="radio" value="QB" ng-model="search.Pos"/></label>
 	<label for="RB" class="filter">RB<input id="RB" type="radio" value="RB" ng-model="search.Pos"/></label>

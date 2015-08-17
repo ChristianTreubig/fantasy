@@ -1,0 +1,130 @@
+html {
+    background: green;
+}
+
+html, body {
+    margin:0;
+    padding:0;
+}
+
+body {
+    font-size:x-large;
+}
+
+#testimonial {
+    text-align:center;
+}
+
+#testimonial_img {
+    width:40%;
+    max-width: 20em;
+}
+
+#sports_links_cont {
+    background:red;
+    height:20em;
+    overflow:hidden;
+    
+    position:relative;
+}
+
+.sports_link {
+    border:1px solid black;
+    box-sizing:border-box;
+    display:block;
+    height:50%;
+    width:10em;
+}
+
+#football {
+    position:absolute;
+    top:0;
+    right:100%;
+}
+
+#basketball {
+    position:absolute;
+    top:0;
+    left:100%;
+}
+
+#baseball {
+    position:absolute;
+    right:100%;
+    bottom:0;
+}
+
+#skating {
+    position:absolute;
+    bottom:0;
+    left:100%;
+}
+
+.sports_link_header {
+    margin:0;
+    text-align:center;
+    padding:0;
+    width:100%;
+    
+    position:absolute;
+    bottom:0;
+}
+
+.sports_link:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.6;
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+#football:before {
+    background-image: url('/images/football.png');
+}
+
+#basketball:before {
+    background-image: url('/images/basketball.jpg');
+}
+
+#baseball:before {
+    background-image: url('/images/baseball.jpg');
+}
+
+#skating:before {
+    background-image: url('/images/skating.jpg');
+}
+
+.coming_soon {
+    cursor:no-drop;
+}
+
+@media all and (max-width: 90em) {
+    body {
+        font-size:large;
+    }
+    #testimonial_img {
+        width:50%;
+        max-width: none;
+    }
+}
+
+@media all and (max-width: 45em){
+    body {
+        font-size:medium;
+    }
+    #testimonial_img {
+        width:70%;
+        max-width: none;
+    }
+}

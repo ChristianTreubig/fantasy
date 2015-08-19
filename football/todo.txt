@@ -1,8 +1,7 @@
 Site home page:
-	-links to different sports (only football will be available now)
-		-When user scolls down, have each link slide into page from the side.
-		-Each link can be a pic, with different pics fading in/out every few seconds.
-	-quote from idiot (+ pic).
+	Try to implement cycling background image in intro div:
+		http://stackoverflow.com/a/27692315
+		http://stackoverflow.com/a/21709814
 Intro:
 	-how it works.
 

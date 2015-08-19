@@ -1,5 +1,5 @@
 html {
-    background: green;
+    background: white;
 }
 
 html, body {
@@ -11,8 +11,54 @@ body {
     font-size:x-large;
 }
 
-#testimonial {
+.clearer {
+    clear:both;
+}
+
+#intro {
+    background: rgb(0,0,128);
+    background: rgba(0,0,128, .8);
+    color:white;
+    font-family: Verdana,Geneva,sans-serif;
+    overflow:hidden;
+    padding:1em 0;
     text-align:center;
+    
+    position:relative;
+}
+
+#intro:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.5;
+    background-image: url('/images/basketball.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+#logo {
+    float:left;
+}
+
+#intro_content {
+    margin:0 auto;
+    max-width:60em;
+}
+
+#intro * {
+    position:relative;  /*Positioned in order to apply z-index and get text on top of background image.*/
+    z-index:2;          /* https://scotch.io/quick-tips/how-to-change-a-css-background-images-opacity */
 }
 
 #testimonial_img {
@@ -21,19 +67,24 @@ body {
 }
 
 #sports_links_cont {
-    background:red;
-    height:20em;
+    height:24em;
     overflow:hidden;
+    text-align:center;
     
     position:relative;
 }
 
 .sports_link {
+    background: rgb(0,0,128);
+    background: rgba(0,0,128, .5);
     border:1px solid black;
+    border-radius:100%;
     box-sizing:border-box;
+    color:white;
     display:block;
-    height:50%;
-    width:10em;
+    height:12em;
+    overflow:hidden;
+    width:12em;
 }
 
 #football {
@@ -61,13 +112,14 @@ body {
 }
 
 .sports_link_header {
+    font-family: "Arial Black","Arial Bold",Gadget,sans-serif;
     margin:0;
     text-align:center;
     padding:0;
     width:100%;
     
     position:absolute;
-    bottom:0;
+    bottom:1em;
 }
 
 .sports_link:before {
@@ -89,6 +141,22 @@ body {
     background-size: cover;
 }
 
+.coming_soon:before {
+    opacity: 0.3;
+}
+
+.sports_link:hover:before {
+    opacity:1;
+}
+
+.coming_soon:hover:before {
+    opacity:0.3;
+}
+
+.sports_link * {
+    z-index:2;
+}
+
 #football:before {
     background-image: url('/images/football.png');
 }
@@ -106,7 +174,17 @@ body {
 }
 
 .coming_soon {
+    background: rgb(105,105,105);
+    background: rgba(105,105,105, 1);
     cursor:no-drop;
+}
+
+.coming_soon_text {
+    font-family: "Century Gothic",CenturyGothic,AppleGothic,sans-serif;
+    width:100%; 
+    
+    position:absolute;
+    top:1em;
 }
 
 @media all and (max-width: 90em) {

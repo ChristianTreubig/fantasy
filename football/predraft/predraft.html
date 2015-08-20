@@ -1,9 +1,9 @@
-<div>Edit pre-draft player values below:</div>
-<form novalidate name="predraftForm">
-	<input type="button" ng-click="reset()" value="Reset values">
-    <input type="button" ng-click="submitForm(predraftForm.$valid)" value="I'm ready for the draft">
+<div id="predraftFormCont">
+<form novalidate name="predraftForm" id="predraftForm">
+	<input type="button" ng-click="reset()" value="Reset values" id="reset">
+    <input type="button" ng-click="submitForm(predraftForm.$valid)" value="I'm ready for the draft!" id="go_to_draft">
     <div id="num_of_teams_cont">
-    	<label>Number of teams (REQUIRED): <input type="number" ng-model="footballConfig.numOfTeams" name="numOfTeams" min="2" max="30" integer value="12" required /></label>
+    	<label>Number of teams: <input type="number" ng-model="footballConfig.numOfTeams" name="numOfTeams" min="2" max="30" integer value="12" required /></label>
     	<span ng-show="predraftForm.$submitted || predraftForm.numOfTeams.$touched">
 	     <span ng-show="predraftForm.numOfTeams.$error.required">Can't be empty.</span>
 	     <span ng-show="predraftForm.numOfTeams.$error.number">Must be a number.</span>
@@ -53,7 +53,7 @@
 	      <div class="stat game_stat recYards">{{ player.RecYards }}</div>
 	      <div class="stat game_stat recTD">{{ player.RecTD }}</div>
 	      <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
-	      <input class="stat" type="number" ng-model="player.AverageAuction" ng-model-options="{ updateOn: 'blur'}" name="playerAverageAuction" min="0" max="200" integer value="{{ player.AverageAuction }}" required>
+	      <input class="stat price" type="number" ng-model="player.AverageAuction" ng-model-options="{ updateOn: ''}" name="playerAverageAuction" min="0" max="200" integer value="{{ player.AverageAuction }}" required>
 	      <span ng-show="playerFieldForm.$submitted || playerFieldForm.playerAverageAuction.$touched">
 	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.required">Can't be empty.</span>
 	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.number">Must be a number.</span>
@@ -63,3 +63,4 @@
 	  
 	</div>
 </form>
+</div>

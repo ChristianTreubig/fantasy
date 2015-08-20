@@ -2,19 +2,12 @@ Site home page:
 	Try to implement cycling background image in intro div:
 		http://stackoverflow.com/a/27692315
 		http://stackoverflow.com/a/21709814
-Intro:
-	-how it works.
-
-Removed updateOn:change option for player model in predraft (when clicking arrows, it would sort as you clicked).
-	-Even blur causes unwanted jumping around when clicking arrows
-		-i.e. finish clicking one player's arrow, then page re-sorts right when you click another player's arrow.
-	-May need to reintroduce updateAverageAuction().
 
 Debug sorting:
 	-In the JSON file, some fields that should be numbers are strings; these fields don't sort correctly.
 		-Rewrite FantasySharks JSON file via Python.
 	
-In predraft, modal to confirm user is ready to proceed to draft when they click that button.
+In predraft, modal to confirm user is ready to proceed to draft when they click that button (also modal to confirm reset).
 
 Deal with page reloads, closes, back buttons, etc.
 

@@ -1,5 +1,8 @@
+html {
+    background:white;
+}
+
 html, body {
-    background:yellow;
     margin:0;
     padding:0;
 }
@@ -14,6 +17,57 @@ body {
     clear:both;
 }
 
+#logo {
+    float:left;
+}
+
+#how_it_works {
+    margin:0 auto;
+    max-width:60em;
+}
+
+#how_it_works_header {
+    font-family: "Arial Black","Arial Bold",Gadget,sans-serif;
+}
+
+#go_to_predraft, #go_to_draft, #reset {
+    background:#2883DF;
+    border-width:0px;
+    color:white;
+    cursor:pointer;
+    display:block;
+    font-size:1em;
+    margin:1em auto;
+    padding:1em 0;
+    text-align:center;
+    text-decoration:none;
+    width:10em;
+}
+
+#go_to_predraft:hover, #go_to_draft:hover {
+    background:#0D75DC;
+}
+
+#go_to_draft, #reset {
+    display:inline-block;
+}
+
+#reset {
+    background:#F42B2B;
+}
+
+#reset:hover {
+    background:#C60B0B;
+}
+
+#predraftFormCont {
+    text-align:center;
+}
+
+#predraftForm {
+    display:inline-block;
+}
+
 #undo {
     background:white;
     cursor:pointer;
@@ -21,11 +75,6 @@ body {
 }
 
 /* Filtering: */
-.sort {
-    background:white;
-    cursor:pointer;
-}
-
 #filter_cont input[type=radio] {
   display:none;
   height:2em;
@@ -45,6 +94,7 @@ body {
 
 .filtered_pos {
     background:blue;
+    color:white;
 }
 
 input.ng-invalid {
@@ -53,9 +103,6 @@ input.ng-invalid {
 /******************************/
 
 /* Player items in ng-repeat: */
-#sort_cont {
-     margin-top:1em;
-}
 
 .player, #sort_cont {
     font-size:0.8em;
@@ -66,7 +113,8 @@ input.ng-invalid {
 }
 
 .stat, .stat_header {
-    background:teal;
+    background:linear-gradient(to bottom,#0262C3,#5D9DDC);
+    color:white;
     display:block;
     float:left;
     text-align:center;
@@ -79,16 +127,28 @@ input.ng-invalid {
 }
 
 .stat_header {
-    background:green;
+    background:#5606CE;
+    border:1px solid black;
+    box-sizing:border-box;
     height:3em;
 }
 
 #sort_cont {
     height:3em;
+    margin-top:1em;
+}
+
+.sort {
+    cursor:pointer;
 }
 
 .stat.name, .stat_header.name {
     width:12em;
+}
+
+.price {
+    background:white;
+    color:black;
 }
 
 /******************************/

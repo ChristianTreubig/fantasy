@@ -2,6 +2,9 @@ Site home page:
 	Try to implement cycling background image in intro div:
 		http://stackoverflow.com/a/27692315
 		http://stackoverflow.com/a/21709814
+		
+In draft, user should be able to select player just by clicking the row.
+	-Attach the modal controller to the .player divs.
 
 Debug sorting:
 	-In the JSON file, some fields that should be numbers are strings; these fields don't sort correctly.

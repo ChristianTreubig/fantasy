@@ -13,7 +13,7 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
         $scope.draftMeta.positionProportions = $scope.draftMeta.calculatePositionProportions($scope.players);
         $scope.draftMeta.playerProportions = $scope.draftMeta.calculatePlayerProportions($scope.players);
         //$scope.draftMeta.calculatePositionProportions($scope.players);
-        //$scope.draftMeta.calculatePlayerProportions($scope.players);
+        //alert($scope.footballConfig.draftReady);
         
         //Sorting/Filtering:
         $scope.predicate = 'FantasyPoints';

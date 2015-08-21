@@ -8,15 +8,15 @@ football_app.controller('PredraftController', ['$scope', "football", "footballCo
         });
         $scope.footballConfig = footballConfig;
         $scope.footballConfig.numOfTeams = footballConfig.numOfTeams;
-        //$scope.numOfTeams = footballConfig.numOfTeams;
         
         $scope.original = angular.copy($scope.players);
-        
+        /*
         $scope.reset = function(data) {
           angular.copy($scope.original, $scope.players);
           $scope.predraftForm.$setPristine();
           $scope.predraftForm.$setUntouched();
         }
+        */
         
         //Sorting/Filtering:
         $scope.updateAverageAuction = function () {
@@ -32,18 +32,18 @@ football_app.controller('PredraftController', ['$scope', "football", "footballCo
         };
         
     });
-   
+    /*
     $scope.submitForm = function(isValid) {
-        //If player value is empty, set it to zero.
+        $scope.predraftForm.$commitViewValue();
         if (!isValid) {
          alert("NOT valid");
         }
         else{
          alert("valid");
-         $scope.predraftForm.$commitViewValue();
          $scope.footballConfig.draftReady = true;
          window.location.hash = "#/draft";
         }
     }
+    */
     
 }]);

@@ -1,7 +1,9 @@
 <div id="predraftFormCont">
 <form novalidate name="predraftForm" id="predraftForm">
-	<input type="button" ng-click="reset()" value="Reset values" id="reset">
-    <input type="button" ng-click="submitForm(predraftForm.$valid)" value="I'm ready for the draft!" id="go_to_draft">
+	<div id="predraftConfirms">
+		<input type="button" ng-click="open()" value="Reset values" id="reset" ng-controller="ResetModalCtrl">
+	    <input type="button" ng-click="open(); predraftForm.$commitViewValue()" value="I'm ready for the draft!" id="go_to_draft" ng-controller="ConfirmSubmitModalCtrl">
+	</div>
     <div id="num_of_teams_cont">
     	<label>Number of teams: <input type="number" ng-model="footballConfig.numOfTeams" name="numOfTeams" min="2" max="30" integer value="12" required /></label>
     	<span ng-show="predraftForm.$submitted || predraftForm.numOfTeams.$touched">
@@ -24,19 +26,19 @@
     </div>
     <div class="clearer"></div>
     <div id="sort_cont">
-    	<div class="sort stat_header name" ng-click="order('Name')">Name</div>
-    	<div class="sort stat_header" ng-click="order('Pos')">Position</div>
-    	<div class="sort stat_header" ng-click="order('Team')">Team</div>
-    	<div class="sort game_stat stat_header" ng-click="order('PassYards')">Passing Yds</div>
-    	<div class="sort game_stat stat_header" ng-click="order('PassTD')">Passing TDs</div>
-    	<div class="sort game_stat stat_header" ng-click="order('Int')">INTs</div>
-    	<div class="sort game_stat stat_header" ng-click="order('RushYards')">Rushing Yds</div>
-    	<div class="sort game_stat stat_header" ng-click="order('RushTD')">Rushing TDs</div>
-    	<div class="sort game_stat stat_header" ng-click="order('Rec')">Receptions</div>
-    	<div class="sort game_stat stat_header" ng-click="order('RecYards')">Rec Yds</div>
-    	<div class="sort game_stat stat_header" ng-click="order('RecTD')">Rec TDs</div>
-    	<div class="sort stat_header" ng-click="order('FantasyPoints')">Fantasy Pts</div>
-    	<div class="sort stat_header" ng-click="order('AverageAuction')">Price</div>
+    	<div class="sort name" ng-click="order('Name')" ng-class="{'sorted_cat':predicate === 'Name'}">Name</div>
+    	<div class="sort" ng-click="order('Pos')" ng-class="{'sorted_cat':predicate === 'Pos'}">Position</div>
+    	<div class="sort" ng-click="order('Team')" ng-class="{'sorted_cat':predicate === 'Team'}">Team</div>
+    	<div class="sort game_stat" ng-click="order('PassYards')" ng-class="{'sorted_cat':predicate === 'PassYards'}">Passing Yds</div>
+    	<div class="sort game_stat" ng-click="order('PassTD')" ng-class="{'sorted_cat':predicate === 'PassTD'}">Passing TDs</div>
+    	<div class="sort game_stat" ng-click="order('Int')" ng-class="{'sorted_cat':predicate === 'Int'}">INTs</div>
+    	<div class="sort game_stat" ng-click="order('RushYards')" ng-class="{'sorted_cat':predicate === 'RushYards'}">Rushing Yds</div>
+    	<div class="sort game_stat" ng-click="order('RushTD')" ng-class="{'sorted_cat':predicate === 'RushTD'}">Rushing TDs</div>
+    	<div class="sort game_stat" ng-click="order('Rec')" ng-class="{'sorted_cat':predicate === 'Rec'}">Receptions</div>
+    	<div class="sort game_stat" ng-click="order('RecYards')" ng-class="{'sorted_cat':predicate === 'RecYards'}">Rec Yds</div>
+    	<div class="sort game_stat" ng-click="order('RecTD')" ng-class="{'sorted_cat':predicate === 'RecTD'}">Rec TDs</div>
+    	<div class="sort" ng-click="order('FantasyPoints')" ng-class="{'sorted_cat':predicate === 'FantasyPoints'}">Fantasy Pts</div>
+    	<div class="sort" ng-click="order('AverageAuction')" ng-class="{'sorted_cat':predicate === 'AverageAuction'}">Price</div>
     </div>
 	<div class="player" ng-repeat="player in players | orderBy:predicate:reverse | filter:search">
 	  

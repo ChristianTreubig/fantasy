@@ -17,6 +17,7 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
         
         //Sorting/Filtering:
         $scope.predicate = 'FantasyPoints';
+        $scope.selectedPos = "All";
         $scope.reverse = true;
         $scope.order = function(predicate) {
           $scope.reverse = ($scope.predicate === predicate) ? !$scope.reverse : false;

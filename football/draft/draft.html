@@ -1,58 +1,88 @@
 <!--<sort-filter players="players"></sort-filter>-->
-<div>League Dollars Remaining:</div>
-<progressbar max="totalDollars" value="draftMeta.totalDollarsRemaining"><span style="color:white; white-space:nowrap;">{{ draftMeta.totalDollarsRemaining }} / {{ totalDollars }}</span></progressbar>
-<div>My Dollars Remaining:</div>
-<progressbar max="200" value="draftMeta.playerDollarsRemaining"><span style="color:white; white-space:nowrap;">{{ draftMeta.playerDollarsRemaining }} / 200</span></progressbar>
+<progressbar max="totalDollars" value="draftMeta.totalDollarsRemaining"><span style="color:white; white-space:nowrap;">League Dollars: {{ draftMeta.totalDollarsRemaining }} / {{ totalDollars }}</span></progressbar>
+<progressbar max="200" value="draftMeta.playerDollarsRemaining"><span style="color:white; white-space:nowrap;">My Dollars: {{ draftMeta.playerDollarsRemaining }} / 200</span></progressbar>
+
+<div id="draft_cont">
+<div id="draft_controls">
+
 <div id="undo" ng-click="undo()">Undo previous pick</div>
 <div id="filter_cont">
-	<label>Search: <input ng-model="search.Name"></label>
-	<label for="All" class="filter">All<input id="All" type="radio" value="" ng-model="search.Pos"/></label>
-	<label for="QB" class="filter">QB<input id="QB" type="radio" value="QB" ng-model="search.Pos"/></label>
-	<label for="RB" class="filter">RB<input id="RB" type="radio" value="RB" ng-model="search.Pos"/></label>
-	<label for="WR" class="filter">WR<input id="WR" type="radio" value="WR" ng-model="search.Pos"/></label>
-	<label for="TE" class="filter">TE<input id="TE" type="radio" value="TE" ng-model="search.Pos"/></label>
-	<label for="K" class="filter">K<input id="K" type="radio" value="K" ng-model="search.Pos"/></label>
+	<label for="All" class="filter" ng-class="{'filtered_pos':selectedPos === 'All'}" ng-click="selectedPos = 'All'">All<input id="All" type="radio" value="" ng-model="search.Pos"/></label>
+	<label for="QB" class="filter" ng-class="{'filtered_pos':selectedPos === 'QB'}" ng-click="selectedPos = 'QB'">QB<input id="QB" type="radio" value="QB" ng-model="search.Pos"/></label>
+	<label for="RB" class="filter" ng-class="{'filtered_pos':selectedPos === 'RB'}" ng-click="selectedPos = 'RB'">RB<input id="RB" type="radio" value="RB" ng-model="search.Pos"/></label>
+	<label for="WR" class="filter" ng-class="{'filtered_pos':selectedPos === 'WR'}" ng-click="selectedPos = 'WR'">WR<input id="WR" type="radio" value="WR" ng-model="search.Pos"/></label>
+	<label for="TE" class="filter" ng-class="{'filtered_pos':selectedPos === 'TE'}" ng-click="selectedPos = 'TE'">TE<input id="TE" type="radio" value="TE" ng-model="search.Pos"/></label>
+	<label for="K" class="filter" ng-class="{'filtered_pos':selectedPos === 'K'}" ng-click="selectedPos = 'K'">K<input id="K" type="radio" value="K" ng-model="search.Pos"/></label>
 </div>
+<div class="clearer"></div>
 <div id="sort_cont">
-	<div class="sort" ng-click="order('Name')">Name</div>
-	<div class="sort" ng-click="order('FantasyPoints')">FantasyPoints</div>
-	<div class="sort" ng-click="order('AverageAuction')">Average Auction</div>
+	<div class="sort name" ng-click="order('Name')" ng-class="{'sorted_cat':predicate === 'Name'}">Name</div>
+	<div class="sort" ng-click="order('Pos')" ng-class="{'sorted_cat':predicate === 'Pos'}">Position</div>
+	<div class="sort" ng-click="order('Team')" ng-class="{'sorted_cat':predicate === 'Team'}">Team</div>
+	<div class="sort game_stat" ng-click="order('PassYards')" ng-class="{'sorted_cat':predicate === 'PassYards'}">Passing Yds</div>
+	<div class="sort game_stat" ng-click="order('PassTD')" ng-class="{'sorted_cat':predicate === 'PassTD'}">Passing TDs</div>
+	<div class="sort game_stat" ng-click="order('Int')" ng-class="{'sorted_cat':predicate === 'Int'}">INTs</div>
+	<div class="sort game_stat" ng-click="order('RushYards')" ng-class="{'sorted_cat':predicate === 'RushYards'}">Rushing Yds</div>
+	<div class="sort game_stat" ng-click="order('RushTD')" ng-class="{'sorted_cat':predicate === 'RushTD'}">Rushing TDs</div>
+	<div class="sort game_stat" ng-click="order('Rec')" ng-class="{'sorted_cat':predicate === 'Rec'}">Receptions</div>
+	<div class="sort game_stat" ng-click="order('RecYards')" ng-class="{'sorted_cat':predicate === 'RecYards'}">Rec Yds</div>
+	<div class="sort game_stat" ng-click="order('RecTD')" ng-class="{'sorted_cat':predicate === 'RecTD'}">Rec TDs</div>
+	<div class="sort" ng-click="order('FantasyPoints')" ng-class="{'sorted_cat':predicate === 'FantasyPoints'}">Fantasy Pts</div>
+	<div class="sort" ng-click="order('AverageAuction')" ng-class="{'sorted_cat':predicate === 'AverageAuction'}">Price (Original)</div>
+	<div class="sort" ng-click="order('RecommendedPrice')" ng-class="{'sorted_cat':predicate === 'RecommendedPrice'}">Price (Recommended)</div>
 </div>
 
 <h3>Available</h3>
-<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:available">
-	<div class="player"> <!-- Don't need this div; move the player class into the parent div. -->
-		{{ player.Name }}
-		{{ player.FantasyPoints }}
-		{{ player.AverageAuction | currency:"$":0 }}
-		{{ player.RecommendedPrice | currency:"$":0 }}
-		{{ player.Available }}
-		{{ player.Price }}
-		{{ player.Owner }}
-		<button ng-controller="ModalCtrl" ng-click="open(player)">Draft</button>
-	</div>
+<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:available" class="player draft_room" ng-controller="ModalCtrl" ng-click="open(player)">
+  <div class="stat name">{{ player.Name }}</div>
+  <div class="stat pos">{{ player.Pos }}</div>
+  <div class="stat team">{{ player.Team }}</div>
+  <div class="stat game_stat passYards">{{ player.PassYards }}</div>
+  <div class="stat game_stat passTD">{{ player.PassTD }}</div>
+  <div class="stat game_stat int">{{ player.Int }}</div>
+  <div class="stat game_stat rushYards">{{ player.RushYards }}</div>
+  <div class="stat game_stat rushTD">{{ player.RushTD }}</div>
+  <div class="stat game_stat rec">{{ player.Rec }}</div>
+  <div class="stat game_stat recYards">{{ player.RecYards }}</div>
+  <div class="stat game_stat recTD">{{ player.RecTD }}</div>
+  <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
+  <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
+  <div class="stat recommendedPrice">{{ player.RecommendedPrice|currency:undefined:0 }}</div>
 </div>
 <h3>Taken</h3>
-<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:notAvailable">
-	<div class="player">
-		{{ player.Name }}
-		{{ player.FantasyPoints }}
-		{{ player.AverageAuction | currency:"$":0 }}
-		{{ player.RecommendedPrice | currency:"$":0 }}
-		{{ player.Available }}
-		{{ player.Price }}
-		{{ player.Owner }}
-	</div>
+<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:notAvailable" class="player">
+  <div class="stat name">{{ player.Name }}</div>
+  <div class="stat pos">{{ player.Pos }}</div>
+  <div class="stat team">{{ player.Team }}</div>
+  <div class="stat game_stat passYards">{{ player.PassYards }}</div>
+  <div class="stat game_stat passTD">{{ player.PassTD }}</div>
+  <div class="stat game_stat int">{{ player.Int }}</div>
+  <div class="stat game_stat rushYards">{{ player.RushYards }}</div>
+  <div class="stat game_stat rushTD">{{ player.RushTD }}</div>
+  <div class="stat game_stat rec">{{ player.Rec }}</div>
+  <div class="stat game_stat recYards">{{ player.RecYards }}</div>
+  <div class="stat game_stat recTD">{{ player.RecTD }}</div>
+  <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
+  <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
+  <div class="stat price">{{ player.Price|currency:undefined:0 }}</div>
 </div>
 <h3>My Team</h3>
-<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:notAvailable | filter:myTeam">
-	<div class="player">
-		{{ player.Name }}
-		{{ player.FantasyPoints }}
-		{{ player.AverageAuction | currency:"$":0 }}
-		{{ player.RecommendedPrice | currency:"$":0 }}
-		{{ player.Available }}
-		{{ player.Price }}
-		{{ player.Owner }}
-	</div>
+<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:notAvailable | filter:myTeam" class="player">
+  <div class="stat name">{{ player.Name }}</div>
+  <div class="stat pos">{{ player.Pos }}</div>
+  <div class="stat team">{{ player.Team }}</div>
+  <div class="stat game_stat passYards">{{ player.PassYards }}</div>
+  <div class="stat game_stat passTD">{{ player.PassTD }}</div>
+  <div class="stat game_stat int">{{ player.Int }}</div>
+  <div class="stat game_stat rushYards">{{ player.RushYards }}</div>
+  <div class="stat game_stat rushTD">{{ player.RushTD }}</div>
+  <div class="stat game_stat rec">{{ player.Rec }}</div>
+  <div class="stat game_stat recYards">{{ player.RecYards }}</div>
+  <div class="stat game_stat recTD">{{ player.RecTD }}</div>
+  <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
+  <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
+  <div class="stat price">{{ player.Price|currency:undefined:0 }}</div>
+</div>
+
+</div>
 </div>

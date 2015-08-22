@@ -1,16 +1,21 @@
-TESTING...
 <form novalidate name="modalForm">
-{{ player.Name }}, {{ player.Owner }}, {{ player.Price }}
-<input type="number" ng-model="player.Price" name="playerPrice" min="0" max="200" integer value="{{ player.Price }}" required>
+<div>{{ player.Name }}</div>
+<label for="playerPrice">Price paid:
+	<input type="number" ng-model="player.Price" name="playerPrice" id="playerPrice" min="0" max="200" integer value="{{ player.Price }}" required>
+</label>
 <span ng-show="modalForm.$submitted || modalForm.playerPrice.$touched">
  <span ng-show="modalForm.playerPrice.$error.required">Can't be empty.</span>
  <span ng-show="modalForm.playerPrice.$error.number">Must be a number.</span>
  <span ng-show="modalForm.playerPrice.$error.max">Must be 200 or less.</span>
 </span>
-<div>
+<div id="drafted_by_who">
 	Drafted by:
-	<label for="me"><input type="radio" ng-model="player.Owner" name="owner" value="me" id="me" required>Me</label>
-    <label for="other"><input type="radio" ng-model="player.Owner" name="owner" value="other" id="other" required>Someone Else</label>
+	<label for="me" ng-class="{'drafted_by':player.Owner === 'me'}">
+		<input type="radio" ng-model="player.Owner" name="owner" value="me" id="me" required>Me
+	</label>
+    <label for="other" ng-class="{'drafted_by':player.Owner === 'other'}">
+    	<input type="radio" ng-model="player.Owner" name="owner" value="other" id="other" required>Someone Else
+    </label>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-primary" ng-click="submit(modalForm.$valid)"  ng-disabled="modalForm.$invalid">Player drafted</button>

@@ -5,7 +5,10 @@
 <div id="draft_cont">
 <div id="draft_controls">
 
-<div id="undo" ng-click="undo()">Undo previous pick</div>
+<div id="undo" class="transitioned" ng-click="undo()">Undo previous pick</div>
+<div id="search_cont">
+	<label for="search">Search: <input id="search" ng-model="search.Name"></label>
+</div>
 <div id="filter_cont">
 	<label for="All" class="filter" ng-class="{'filtered_pos':selectedPos === 'All'}" ng-click="selectedPos = 'All'">All<input id="All" type="radio" value="" ng-model="search.Pos"/></label>
 	<label for="QB" class="filter" ng-class="{'filtered_pos':selectedPos === 'QB'}" ng-click="selectedPos = 'QB'">QB<input id="QB" type="radio" value="QB" ng-model="search.Pos"/></label>
@@ -32,8 +35,61 @@
 	<div class="sort" ng-click="order('RecommendedPrice')" ng-class="{'sorted_cat':predicate === 'RecommendedPrice'}">Price (Recommended)</div>
 </div>
 
-<h3>Available</h3>
-<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:available" class="player draft_room" ng-controller="ModalCtrl" ng-click="open(player)">
+<accordion close-others="true">
+
+<accordion-group>
+<accordion-heading>
+	Taken ({{ takenFiltered.length }} Players)
+</accordion-heading>
+<span class="price_note"><i>(The last column here shows the actual price paid.)</i></span>
+<div class="clearer"></div>
+<div ng-repeat="player in takenFiltered = (players | orderBy:predicate:reverse | filter:search | filter:notAvailable)" class="player">
+  <div class="stat name">{{ player.Name }}</div>
+  <div class="stat pos">{{ player.Pos }}</div>
+  <div class="stat team">{{ player.Team }}</div>
+  <div class="stat game_stat passYards">{{ player.PassYards }}</div>
+  <div class="stat game_stat passTD">{{ player.PassTD }}</div>
+  <div class="stat game_stat int">{{ player.Int }}</div>
+  <div class="stat game_stat rushYards">{{ player.RushYards }}</div>
+  <div class="stat game_stat rushTD">{{ player.RushTD }}</div>
+  <div class="stat game_stat rec">{{ player.Rec }}</div>
+  <div class="stat game_stat recYards">{{ player.RecYards }}</div>
+  <div class="stat game_stat recTD">{{ player.RecTD }}</div>
+  <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
+  <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
+  <div class="stat price">{{ player.Price|currency:undefined:0 }}</div>
+</div>
+</accordion-group>
+
+<accordion-group>
+<accordion-heading>
+	My Team ({{ myTeamFiltered.length }} Players)
+</accordion-heading>
+<span class="price_note"><i>(The last column here shows the actual price paid.)</i></span>
+<div class="clearer"></div>
+<div ng-repeat="player in myTeamFiltered = (players | orderBy:predicate:reverse | filter:search | filter:notAvailable | filter:myTeam)" class="player">
+  <div class="stat name">{{ player.Name }}</div>
+  <div class="stat pos">{{ player.Pos }}</div>
+  <div class="stat team">{{ player.Team }}</div>
+  <div class="stat game_stat passYards">{{ player.PassYards }}</div>
+  <div class="stat game_stat passTD">{{ player.PassTD }}</div>
+  <div class="stat game_stat int">{{ player.Int }}</div>
+  <div class="stat game_stat rushYards">{{ player.RushYards }}</div>
+  <div class="stat game_stat rushTD">{{ player.RushTD }}</div>
+  <div class="stat game_stat rec">{{ player.Rec }}</div>
+  <div class="stat game_stat recYards">{{ player.RecYards }}</div>
+  <div class="stat game_stat recTD">{{ player.RecTD }}</div>
+  <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
+  <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
+  <div class="stat price">{{ player.Price|currency:undefined:0 }}</div>
+</div>
+</accordion-group>
+
+<accordion-group is-open="true">
+<accordion-heading>
+	Available ({{ availableFiltered.length }} Players)
+</accordion-heading>
+<div ng-repeat="player in availableFiltered = (players | orderBy:predicate:reverse | filter:search | filter:available)" class="player draft_room" ng-controller="ModalCtrl" ng-click="open(player)">
   <div class="stat name">{{ player.Name }}</div>
   <div class="stat pos">{{ player.Pos }}</div>
   <div class="stat team">{{ player.Team }}</div>
@@ -49,40 +105,9 @@
   <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
   <div class="stat recommendedPrice">{{ player.RecommendedPrice|currency:undefined:0 }}</div>
 </div>
-<h3>Taken</h3>
-<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:notAvailable" class="player">
-  <div class="stat name">{{ player.Name }}</div>
-  <div class="stat pos">{{ player.Pos }}</div>
-  <div class="stat team">{{ player.Team }}</div>
-  <div class="stat game_stat passYards">{{ player.PassYards }}</div>
-  <div class="stat game_stat passTD">{{ player.PassTD }}</div>
-  <div class="stat game_stat int">{{ player.Int }}</div>
-  <div class="stat game_stat rushYards">{{ player.RushYards }}</div>
-  <div class="stat game_stat rushTD">{{ player.RushTD }}</div>
-  <div class="stat game_stat rec">{{ player.Rec }}</div>
-  <div class="stat game_stat recYards">{{ player.RecYards }}</div>
-  <div class="stat game_stat recTD">{{ player.RecTD }}</div>
-  <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
-  <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
-  <div class="stat price">{{ player.Price|currency:undefined:0 }}</div>
-</div>
-<h3>My Team</h3>
-<div ng-repeat="player in players | orderBy:predicate:reverse | filter:search | filter:notAvailable | filter:myTeam" class="player">
-  <div class="stat name">{{ player.Name }}</div>
-  <div class="stat pos">{{ player.Pos }}</div>
-  <div class="stat team">{{ player.Team }}</div>
-  <div class="stat game_stat passYards">{{ player.PassYards }}</div>
-  <div class="stat game_stat passTD">{{ player.PassTD }}</div>
-  <div class="stat game_stat int">{{ player.Int }}</div>
-  <div class="stat game_stat rushYards">{{ player.RushYards }}</div>
-  <div class="stat game_stat rushTD">{{ player.RushTD }}</div>
-  <div class="stat game_stat rec">{{ player.Rec }}</div>
-  <div class="stat game_stat recYards">{{ player.RecYards }}</div>
-  <div class="stat game_stat recTD">{{ player.RecTD }}</div>
-  <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
-  <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
-  <div class="stat price">{{ player.Price|currency:undefined:0 }}</div>
-</div>
+</accordion-group>
+
+</accordion>
 
 </div>
 </div>

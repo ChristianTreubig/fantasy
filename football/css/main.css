@@ -13,6 +13,14 @@ body {
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; } /* Required for UI Bootstrap */
 
+.transitioned {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition:    all 0.3s ease;
+  -ms-transition:     all 0.3s ease;
+  -o-transition:      all 0.3s ease;
+  transition:      all 0.3s ease;
+}
+
 .clearer {
     clear:both;
 }
@@ -56,7 +64,7 @@ body {
     background:#F42B2B;
 }
 
-#reset:hover, .btn-warning:hover {
+#reset:hover, .btn-warning:hover, #undo:hover {
     background:#C60B0B;
 }
 
@@ -110,6 +118,11 @@ input.ng-invalid {
 /******************************/
 
 /* Player items in ng-repeat: */
+
+.price_note {
+    font-size:0.8em;
+    float:right;
+}
 
 .player, #sort_cont {
     font-size:0.8em;
@@ -200,6 +213,18 @@ input.price {
 
 #drafted_by_who label.drafted_by {
     border:1em solid #022D6E;
+}
+
+/******************************/
+
+/* Accordion: */
+
+.panel-body {
+    padding:0;
+}
+
+.panel-title {
+    font-size:1em;
 }
 
 /******************************/

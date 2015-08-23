@@ -37,7 +37,7 @@ body {
     height: 100%;
     z-index: 1;
     opacity: 0.5;
-    background-image: url('/images/basketball.jpg');
+    background-image: url('/images/football_field.jpg');
     background-repeat: no-repeat;
     background-position: 50% 0;
     -ms-background-size: cover;

@@ -1,4 +1,4 @@
-In draft, implement UI Bootstrap Accordion on Available/Taken/My Team. 
+Add .transitioned class (from main.css) to elements.
 
 Site home page:
 	Try to implement cycling background image in intro div:
@@ -14,6 +14,8 @@ Debug sorting:
 In predraft, modal to confirm user is ready to proceed to draft when they click that button (also modal to confirm reset).
 
 Deal with page reloads, closes, back buttons, etc.
+
+Migrate whatever you can to directives.
 
 Cool front end stuff:
 	http://angular-ui.github.io/bootstrap/

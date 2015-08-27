@@ -1,15 +1,19 @@
 Add .transitioned class (from main.css) to elements.
 
+Intro page:
+	-Stat projections from fantasysharks.com
+	-Fantasy Points calculations based upon Yahoo standard scoring (non-PPR).
+	-Price based upon average auction values from MyFantasyLeague.com.
+
 Site home page:
 	Try to implement cycling background image in intro div:
 		http://stackoverflow.com/a/27692315
 		http://stackoverflow.com/a/21709814
 	
 In draft, note that the last column under Taken/My Team is Price, not RecommendedPrice.
+In draft, clear search box after each pick.
 
-Debug sorting:
-	-In the JSON file, some fields that should be numbers are strings; these fields don't sort correctly.
-		-Rewrite FantasySharks JSON file via Python.
+Due to null prices being reformatted to 0 in the JSON, you can remove those statements from the controllers. 
 	
 In predraft, modal to confirm user is ready to proceed to draft when they click that button (also modal to confirm reset).
 

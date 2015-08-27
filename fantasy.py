@@ -21,7 +21,7 @@ with open("json_updated.json", "w") as outfile:
         for key in player:
             if key in relevant_keys:
                 player_relevant[key] = player[key]
-        json.dump(player_relevant, outfile)
+        json.dump(player_relevant, outfile, separators=(',',':'))
         if data[-1]["Name"] != player["Name"]: #Check if not last iteration.
             outfile.write(",")
     outfile.write("]")

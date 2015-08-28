@@ -1,11 +1,6 @@
 football_app.controller('PredraftController', ['$scope', "football", "footballConfig", function($scope, football, footballConfig) {
     football.success(function(data) { //Calling .success() here because that's the "promise" returned by $http service
         $scope.players = data;
-        angular.forEach($scope.players,function(value, index){
-            if (value.AverageAuction == null) {
-                value.AverageAuction = 0;
-            }
-        });
         $scope.footballConfig = footballConfig;
         $scope.footballConfig.numOfTeams = footballConfig.numOfTeams;
         

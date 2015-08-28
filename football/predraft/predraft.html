@@ -1,12 +1,16 @@
+<h1 id="predraft_header">Set up your draft</h1>
 <div id="predraftFormCont">
+<div id="instructions">
+	<div>Edit player values below.</div>
+</div>
 <form novalidate name="predraftForm" id="predraftForm">
 	<div id="predraftConfirms">
-		<input type="button" ng-click="open()" value="Reset values" id="reset" ng-controller="ResetModalCtrl">
-	    <input type="button" ng-click="open(); predraftForm.$commitViewValue()" value="I'm ready for the draft!" id="go_to_draft" ng-controller="ConfirmSubmitModalCtrl">
+		<input class="transitioned" type="button" ng-click="open()" value="Reset values" id="reset" ng-controller="ResetModalCtrl">
+	    <input class="transitioned" type="button" ng-click="open(); predraftForm.$commitViewValue()" value="I'm ready for the draft!" id="go_to_draft" ng-controller="ConfirmSubmitModalCtrl">
 	</div>
     <div id="num_of_teams_cont">
     	<label>Number of teams: <input type="number" ng-model="footballConfig.numOfTeams" name="numOfTeams" min="2" max="30" integer value="12" required /></label>
-    	<span ng-show="predraftForm.$submitted || predraftForm.numOfTeams.$touched">
+    	<span ng-show="predraftForm.$submitted || predraftForm.numOfTeams.$touched" class="error">
 	     <span ng-show="predraftForm.numOfTeams.$error.required">Can't be empty.</span>
 	     <span ng-show="predraftForm.numOfTeams.$error.number">Must be a number.</span>
 	     <span ng-show="predraftForm.numOfTeams.$error.max">Must be 30 or less.</span>
@@ -17,50 +21,56 @@
     	<label for="search">Search: <input id="search" ng-model="search.Name" ng-change="updateAverageAuction()"></label>
     </div>
     <div id="filter_cont">
-    	<label for="All" class="filter" ng-class="{'filtered_pos':selectedPos === 'All'}" ng-click="selectedPos = 'All'">All<input id="All" type="radio" value="" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
-    	<label for="QB" class="filter" ng-class="{'filtered_pos':selectedPos === 'QB'}" ng-click="selectedPos = 'QB'">QB<input id="QB" type="radio" value="QB" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
-    	<label for="RB" class="filter" ng-class="{'filtered_pos':selectedPos === 'RB'}" ng-click="selectedPos = 'RB'">RB<input id="RB" type="radio" value="RB" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
-    	<label for="WR" class="filter" ng-class="{'filtered_pos':selectedPos === 'WR'}" ng-click="selectedPos = 'WR'">WR<input id="WR" type="radio" value="WR" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
-    	<label for="TE" class="filter" ng-class="{'filtered_pos':selectedPos === 'TE'}" ng-click="selectedPos = 'TE'">TE<input id="TE" type="radio" value="TE" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
-    	<label for="K" class="filter" ng-class="{'filtered_pos':selectedPos === 'K'}" ng-click="selectedPos = 'K'">K<input id="K" type="radio" value="K" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
+    	<label for="All" class="filter transitioned" ng-class="{'filtered_pos':selectedPos === 'All'}" ng-click="selectedPos = 'All'">All<input id="All" type="radio" value="" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
+    	<label for="QB" class="filter transitioned" ng-class="{'filtered_pos':selectedPos === 'QB'}" ng-click="selectedPos = 'QB'">QB<input id="QB" type="radio" value="QB" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
+    	<label for="RB" class="filter transitioned" ng-class="{'filtered_pos':selectedPos === 'RB'}" ng-click="selectedPos = 'RB'">RB<input id="RB" type="radio" value="RB" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
+    	<label for="WR" class="filter transitioned" ng-class="{'filtered_pos':selectedPos === 'WR'}" ng-click="selectedPos = 'WR'">WR<input id="WR" type="radio" value="WR" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
+    	<label for="TE" class="filter transitioned" ng-class="{'filtered_pos':selectedPos === 'TE'}" ng-click="selectedPos = 'TE'">TE<input id="TE" type="radio" value="TE" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
+    	<label for="K" class="filter transitioned" ng-class="{'filtered_pos':selectedPos === 'K'}" ng-click="selectedPos = 'K'">K<input id="K" type="radio" value="K" ng-model="search.Pos" ng-click="updateAverageAuction()" /></label>
     </div>
     <div class="clearer"></div>
     <div id="sort_cont">
-    	<div class="sort name" ng-click="order('Name')" ng-class="{'sorted_cat':predicate === 'Name'}">Name</div>
-    	<div class="sort" ng-click="order('Pos')" ng-class="{'sorted_cat':predicate === 'Pos'}">Position</div>
-    	<div class="sort" ng-click="order('Team')" ng-class="{'sorted_cat':predicate === 'Team'}">Team</div>
-    	<div class="sort game_stat" ng-click="order('PassYards')" ng-class="{'sorted_cat':predicate === 'PassYards'}">Passing Yds</div>
-    	<div class="sort game_stat" ng-click="order('PassTD')" ng-class="{'sorted_cat':predicate === 'PassTD'}">Passing TDs</div>
-    	<div class="sort game_stat" ng-click="order('Int')" ng-class="{'sorted_cat':predicate === 'Int'}">INTs</div>
-    	<div class="sort game_stat" ng-click="order('RushYards')" ng-class="{'sorted_cat':predicate === 'RushYards'}">Rushing Yds</div>
-    	<div class="sort game_stat" ng-click="order('RushTD')" ng-class="{'sorted_cat':predicate === 'RushTD'}">Rushing TDs</div>
-    	<div class="sort game_stat" ng-click="order('Rec')" ng-class="{'sorted_cat':predicate === 'Rec'}">Receptions</div>
-    	<div class="sort game_stat" ng-click="order('RecYards')" ng-class="{'sorted_cat':predicate === 'RecYards'}">Rec Yds</div>
-    	<div class="sort game_stat" ng-click="order('RecTD')" ng-class="{'sorted_cat':predicate === 'RecTD'}">Rec TDs</div>
-    	<div class="sort" ng-click="order('FantasyPoints')" ng-class="{'sorted_cat':predicate === 'FantasyPoints'}">Fantasy Pts</div>
-    	<div class="sort" ng-click="order('AverageAuction')" ng-class="{'sorted_cat':predicate === 'AverageAuction'}">Price</div>
+    	<div class="sort name transitioned" ng-click="order('Name')" ng-class="{'sorted_cat':predicate === 'Name'}"><span class="sort_text">Name</span></div>
+    	<div class="sort transitioned player_info" ng-click="order('Pos')" ng-class="{'sorted_cat':predicate === 'Pos'}"><span class="sort_text">Position</span></div>
+    	<div class="sort transitioned player_info" ng-click="order('Team')" ng-class="{'sorted_cat':predicate === 'Team'}"><span class="sort_text">Team</span></div>
+    	<div class="sort game_stat transitioned" ng-click="order('PassYards')" ng-class="{'sorted_cat':predicate === 'PassYards'}"><span class="sort_text">Passing Yds</span></div>
+    	<div class="sort game_stat transitioned" ng-click="order('PassTD')" ng-class="{'sorted_cat':predicate === 'PassTD'}"><span class="sort_text">Passing TDs</span></div>
+    	<div class="sort game_stat transitioned" ng-click="order('Int')" ng-class="{'sorted_cat':predicate === 'Int'}"><span class="sort_text">INTs</span></div>
+    	<div class="sort game_stat transitioned" ng-click="order('RushYards')" ng-class="{'sorted_cat':predicate === 'RushYards'}"><span class="sort_text">Rushing Yds</span></div>
+    	<div class="sort game_stat transitioned" ng-click="order('RushTD')" ng-class="{'sorted_cat':predicate === 'RushTD'}"><span class="sort_text">Rushing TDs</span></div>
+    	<div class="sort game_stat transitioned" ng-click="order('Rec')" ng-class="{'sorted_cat':predicate === 'Rec'}"><span class="sort_text">Receptions</span></div>
+    	<div class="sort game_stat transitioned" ng-click="order('RecYards')" ng-class="{'sorted_cat':predicate === 'RecYards'}"><span class="sort_text">Rec Yds</span></div>
+    	<div class="sort game_stat transitioned" ng-click="order('RecTD')" ng-class="{'sorted_cat':predicate === 'RecTD'}"><span class="sort_text">Rec TDs</span></div>
+    	<div class="sort transitioned" ng-click="order('FantasyPoints')" ng-class="{'sorted_cat':predicate === 'FantasyPoints'}"><span class="sort_text">Fantasy Pts</span></div>
+    	<div class="sort transitioned" ng-click="order('AverageAuction')" ng-class="{'sorted_cat':predicate === 'AverageAuction'}"><span class="sort_text">Price</span></div>
     </div>
 	<div class="player" ng-repeat="player in players | orderBy:predicate:reverse | filter:search">
 	  
 	  <ng-form name="playerFieldForm"> <!-- https://scotch.io/tutorials/building-dynamic-angular-forms-with-ngrepeat-and-ngform -->
-	      <div class="stat name">{{ player.Name }}</div>
-	      <div class="stat pos">{{ player.Pos }}</div>
-	      <div class="stat team">{{ player.Team }}</div>
-	      <div class="stat game_stat passYards">{{ player.PassYards }}</div>
-	      <div class="stat game_stat passTD">{{ player.PassTD }}</div>
-	      <div class="stat game_stat int">{{ player.Int }}</div>
-	      <div class="stat game_stat rushYards">{{ player.RushYards }}</div>
-	      <div class="stat game_stat rushTD">{{ player.RushTD }}</div>
-	      <div class="stat game_stat rec">{{ player.Rec }}</div>
-	      <div class="stat game_stat recYards">{{ player.RecYards }}</div>
-	      <div class="stat game_stat recTD">{{ player.RecTD }}</div>
-	      <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
+	  
+	  	<div class="player_stat_cont">
+	  
+		      <div class="stat name">{{ player.Name }}</div>
+		      <div class="stat pos player_info">{{ player.Pos }}</div>
+		      <div class="stat team player_info">{{ player.Team }}</div>
+		      <div class="stat game_stat passYards">{{ player.PassYards }}</div>
+		      <div class="stat game_stat passTD">{{ player.PassTD }}</div>
+		      <div class="stat game_stat int">{{ player.Int }}</div>
+		      <div class="stat game_stat rushYards">{{ player.RushYards }}</div>
+		      <div class="stat game_stat rushTD">{{ player.RushTD }}</div>
+		      <div class="stat game_stat rec">{{ player.Rec }}</div>
+		      <div class="stat game_stat recYards">{{ player.RecYards }}</div>
+		      <div class="stat game_stat recTD">{{ player.RecTD }}</div>
+		      <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
+		      
+		</div>    
+		      
 	      <input class="stat price" type="number" ng-model="player.AverageAuction" ng-model-options="{ updateOn: ''}" name="playerAverageAuction" min="0" max="200" integer value="{{ player.AverageAuction }}" required>
-	      <span ng-show="playerFieldForm.$submitted || playerFieldForm.playerAverageAuction.$touched">
-	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.required">Can't be empty.</span>
-	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.number">Must be a number.</span>
-	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.max">Must be 200 or less.</span>
-	      </span>
+	      <!--<div ng-show="playerFieldForm.$submitted || playerFieldForm.playerAverageAuction.$touched" class="error stat">-->
+	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.required" class="error">Can't be empty.</span>
+	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.number" class="error">Must be a number.</span>
+	      	<span ng-show="playerFieldForm.playerAverageAuction.$error.max" class="error">Must be 200 or less.</span>
+	      <!--</div>-->
 	  </ng-form>
 	  
 	</div>

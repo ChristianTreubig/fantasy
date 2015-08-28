@@ -85,6 +85,8 @@ body {
     height:12em;
     overflow:hidden;
     width:12em;
+    
+    z-index: 1; /* http://stackoverflow.com/a/20002725 */
 }
 
 #football {
@@ -139,6 +141,12 @@ body {
     -moz-background-size: cover;
     -webkit-background-size: cover;
     background-size: cover;
+    
+  -webkit-transition: opacity 0.3s ease;
+  -moz-transition:    opacity 0.3s ease;
+  -ms-transition:     opacity 0.3s ease;
+  -o-transition:      opacity 0.3s ease;
+  transition:      opacity 0.3s ease;
 }
 
 .coming_soon:before {

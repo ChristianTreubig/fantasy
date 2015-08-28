@@ -61,7 +61,13 @@ football_app.controller('DraftController', ['$scope', "football", "footballConfi
             }
         }
         
-        //alert($scope.draftMeta.playerDollarsRemaining);
+        //Check if Recommended Price is higher or lower:
+        $scope.priceChange = function(player, up) {
+            if (up) {
+                return Math.round(player.RecommendedPrice) > Math.round(player.AverageAuction);
+            }
+            return Math.round(player.RecommendedPrice) < Math.round(player.AverageAuction);
+        }
         
     });
 }]);

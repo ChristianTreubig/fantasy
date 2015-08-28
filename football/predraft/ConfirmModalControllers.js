@@ -20,11 +20,7 @@ football_app.controller('ConfirmSubmitModalInstanceCtrl', ["$scope", "$modalInst
         //alert("boom");  
         $scope.submit = function(isValid) {
             $scope.predraftForm.$commitViewValue();
-            if (!isValid) {
-             alert("NOT valid");
-            }
-            else{
-             alert("valid");
+            if (isValid) {
              $scope.footballConfig.draftReady = true;
              window.location.hash = "#/draft";
             }

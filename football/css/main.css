@@ -29,6 +29,14 @@ body {
     float:left;
 }
 
+#predraft_header {
+    text-align:center;
+}
+
+#instructions {
+    font-size:0.8em;
+}
+
 #how_it_works {
     margin:0 auto;
     max-width:60em;
@@ -107,14 +115,15 @@ body {
     width:5em;
 }
 
+.filter:hover {
+    background:#888EDB;
+}
+
 .filtered_pos {
     background:blue;
     color:white;
 }
 
-input.ng-invalid {
-    background:red;
-}
 /******************************/
 
 /* Player items in ng-repeat: */
@@ -130,11 +139,16 @@ input.ng-invalid {
 
 .player {
     height:2em;
-    background:linear-gradient(to bottom,#0262C3,#5D9DDC);
+    /*background:linear-gradient(to bottom,#0262C3,#5D9DDC);*/
 }
 
 .draft_room.player {
     cursor:pointer;
+}
+
+.player_stat_cont {
+    background:linear-gradient(to bottom,#0262C3,#5D9DDC);
+    float:left;
 }
 
 .stat, .sort{
@@ -155,11 +169,19 @@ input.ng-invalid {
 }
 
 .sort {
-    background:#5606CE;
+    background:#525ACD;
     border:1px solid black;
     box-sizing:border-box;
     cursor:pointer;
     height:3em;
+}
+
+.sort:hover {
+    background:#0F1BC4;
+}
+
+.sort_text {
+    font-size:0.8em;
 }
 
 #sort_cont {
@@ -176,13 +198,41 @@ input.price {
     color:black;
 }
 
+.stat.recommendedPrice {
+    background:white;
+    color:black;
+}
+
+.stat.recommendedPrice.price_up {
+    background:#56DE64;
+}
+
+.stat.recommendedPrice.price_down {
+    background:#D74A4A;
+}
+
 /******************************/
 
 /* Sorting: */
 
 .sorted_cat {
-    background:#EDED1A;
-    color:black;
+    background:black;
+}
+
+/******************************/
+
+/* Errors: */
+
+.error {
+    color:red;
+}
+
+.error.stat > span {
+    font-size:0.8em;
+}
+
+input.ng-invalid {
+    background:red;
 }
 
 /******************************/
@@ -229,20 +279,31 @@ input.price {
 
 /******************************/
 
-@media all and (max-width: 90em) {
+@media all and (max-width: 95em) {
     body {
         font-size:large;
     }
 }
 
-@media all and (max-width: 75em){
+@media all and (max-width: 85em){
     body {
         font-size:medium;
     }
 }
 
-@media all and (max-width: 60em){
+@media all and (max-width: 70em){
     .game_stat {
+        display:none;
+    }
+    .filter {
+        width:3em;
+    }
+}
+@media all and (max-width: 35em){
+    .player_info {
+        display:none;
+    }
+    .error {
         display:none;
     }
 }

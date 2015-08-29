@@ -35,10 +35,8 @@ football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playe
       $scope.draftMeta = draftMeta;
     
       $scope.submit = function (isValid) {
-          if (!isValid) {
-              alert("NOT valid");
-          }
-          else {
+          if (isValid) {
+              $modalInstance.close();
               $scope.player.Available = false;
               $scope.draftMeta.totalDollarsRemaining -= $scope.player.Price;
               if ($scope.player.Owner === "me") {
@@ -60,8 +58,6 @@ football_app.controller('ModalInstanceCtrl', ["$scope", "$modalInstance", "playe
               $scope.draftMeta.updatePlayerValues(availablePlayers, $scope.draftMeta.totalDollarsRemaining, $scope.draftMeta.positionProportions);
               
               //-----------------------------------//
-              
-              $modalInstance.close();
           }
       };
     

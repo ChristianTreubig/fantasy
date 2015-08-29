@@ -1,6 +1,8 @@
 football_app.controller('PredraftController', ['$scope', "football", "footballConfig", function($scope, football, footballConfig) {
+    $scope.loading=true;
     football.success(function(data) { //Calling .success() here because that's the "promise" returned by $http service
         $scope.players = data;
+        $scope.loading=false;
         $scope.footballConfig = footballConfig;
         $scope.footballConfig.numOfTeams = footballConfig.numOfTeams;
         
@@ -25,7 +27,6 @@ football_app.controller('PredraftController', ['$scope', "football", "footballCo
           $scope.predicate = predicate;
           $scope.predraftForm.$commitViewValue();
         };
-        
     });
     /*
     $scope.submitForm = function(isValid) {

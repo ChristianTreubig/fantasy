@@ -21,7 +21,7 @@ body {
     color:white;
     font-family: Verdana,Geneva,sans-serif;
     overflow:hidden;
-    padding:1em 0;
+    padding:1em 1%;
     text-align:center;
     
     position:relative;
@@ -48,7 +48,18 @@ body {
 }
 
 #logo {
+    color:white;
     float:left;
+    text-decoration:none;
+}
+
+#logo_text {
+    font-family: "Arial Narrow",Arial,sans-serif;
+    font-size:5ex;
+}
+
+#logo_img {
+    height:5ex;
 }
 
 #intro_content {
@@ -64,6 +75,13 @@ body {
 #testimonial_img {
     width:40%;
     max-width: 20em;
+}
+
+#sports_header {
+    font-family: Tahoma,Verdana,Segoe,sans-serif;
+    font-size:2em;
+    margin:0.5em 0;
+    text-align:center;
 }
 
 #sports_links_cont {
@@ -195,6 +213,12 @@ body {
     top:1em;
 }
 
+footer {
+    font-size:0.8em;
+    margin-top:2em;
+    text-align:center;
+}
+
 @media all and (max-width: 90em) {
     body {
         font-size:large;
@@ -209,8 +233,19 @@ body {
     body {
         font-size:medium;
     }
+    #logo {
+        display:inline-block;
+        float:none;
+    }
     #testimonial_img {
         width:70%;
         max-width: none;
+    }
+    #sports_links_cont {
+        height:20em;
+    }
+    .sports_link {
+        height:10em;
+        width:10em;
     }
 }

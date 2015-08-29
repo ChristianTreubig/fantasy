@@ -26,7 +26,19 @@ body {
 }
 
 #logo {
+    color:black;
     float:left;
+    text-decoration:none;
+}
+
+#logo_text {
+    font-family: "Arial Narrow",Arial,sans-serif;
+    font-size:5ex;
+}
+
+#logo_img {
+    height:5ex;
+    vertical-align:text-bottom;
 }
 
 #predraft_header {
@@ -40,6 +52,7 @@ body {
 #how_it_works {
     margin:0 auto;
     max-width:60em;
+    padding:0 1%;
 }
 
 #how_it_works_header {
@@ -128,6 +141,10 @@ body {
 
 /* Player items in ng-repeat: */
 
+.loading_wrap {
+    margin-top:2em;
+}
+
 .price_note {
     font-size:0.8em;
     float:right;
@@ -151,16 +168,16 @@ body {
     float:left;
 }
 
+.player_stat_cont:hover {
+    background:#0262C3;
+}
+
 .stat, .sort{
     color:white;
     display:block;
     float:left;
     text-align:center;
     width:5em;
-}
-
-.draft_room.player:hover {
-    background:#0262C3;
 }
 
 .stat {
@@ -190,12 +207,16 @@ body {
 }
 
 .stat.name, .sort.name {
-    width:12em;
+    width:10em;
 }
 
 input.price {
     background:white;
     color:black;
+}
+
+.stat.recommendedPrice, .stat.pricePaid, .sort.recommendedPrice {
+    width:6em;
 }
 
 .stat.recommendedPrice {

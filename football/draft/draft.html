@@ -37,8 +37,12 @@
 	<div class="sort game_stat transitioned" ng-click="order('RecYards')" ng-class="{'sorted_cat':predicate === 'RecYards'}"><span class="sort_text">Rec Yds</span></div>
 	<div class="sort game_stat transitioned" ng-click="order('RecTD')" ng-class="{'sorted_cat':predicate === 'RecTD'}"><span class="sort_text">Rec TDs</span></div>
 	<div class="sort transitioned" ng-click="order('FantasyPoints')" ng-class="{'sorted_cat':predicate === 'FantasyPoints'}"><span class="sort_text">Fantasy Pts</span></div>
-	<div class="sort transitioned" ng-click="order('AverageAuction')" ng-class="{'sorted_cat':predicate === 'AverageAuction'}"><span class="sort_text">Price (Original)</span></div>
-	<div class="sort transitioned" ng-click="order('RecommendedPrice')" ng-class="{'sorted_cat':predicate === 'RecommendedPrice'}"><span class="sort_text">Price (Recommended)</span></div>
+	<div class="sort transitioned" ng-click="order('AverageAuction')" ng-class="{'sorted_cat':predicate === 'AverageAuction'}"><span class="sort_text">Original Price</span></div>
+	<div class="sort transitioned recommendedPrice" ng-click="order('RecommendedPrice')" ng-class="{'sorted_cat':predicate === 'RecommendedPrice'}"><span class="sort_text">Recommended Price</span></div>
+</div>
+
+<div class="loading_wrap" ng-show="loading">
+	<!--<img src="/images/loading.gif" alt="loading">-->Loading...	
 </div>
 
 <accordion close-others="true">
@@ -64,7 +68,7 @@
 	  <div class="stat game_stat recTD">{{ player.RecTD }}</div>
 	  <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
 	  <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
-	  <div class="stat price">{{ player.Price|currency:undefined:0 }}</div>
+	  <div class="stat pricePaid">{{ player.Price|currency:undefined:0 }}</div>
 	 </div>
 </div>
 </accordion-group>
@@ -90,7 +94,7 @@
 	  <div class="stat game_stat recTD">{{ player.RecTD }}</div>
 	  <div class="stat fantasyPoints">{{ player.FantasyPoints }}</div>
 	  <div class="stat averageAuction">{{ player.AverageAuction|currency:undefined:0  }}</div>
-	  <div class="stat price">{{ player.Price|currency:undefined:0 }}</div>
+	  <div class="stat pricePaid">{{ player.Price|currency:undefined:0 }}</div>
 	</div>
 </div>
 </accordion-group>

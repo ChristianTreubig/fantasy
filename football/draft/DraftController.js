@@ -1,6 +1,8 @@
 football_app.controller('DraftController', ['$scope', "football", "footballConfig", "draftMeta", function($scope, football, footballConfig, draftMeta) {
+    $scope.loading=true;
     football.success(function(data) {
         $scope.players = data;
+        $scope.loading=false;
         $scope.footballConfig = footballConfig; //Need to define footballConfig service scope because we're in football block?
         $scope.draftMeta = draftMeta;// ' ' '
         $scope.totalDollars = $scope.footballConfig.numOfTeams * 200;

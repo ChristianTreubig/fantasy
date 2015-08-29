@@ -44,6 +44,11 @@
     	<div class="sort transitioned" ng-click="order('FantasyPoints')" ng-class="{'sorted_cat':predicate === 'FantasyPoints'}"><span class="sort_text">Fantasy Pts</span></div>
     	<div class="sort transitioned" ng-click="order('AverageAuction')" ng-class="{'sorted_cat':predicate === 'AverageAuction'}"><span class="sort_text">Price</span></div>
     </div>
+    
+    <div class="loading_wrap" ng-show="loading">
+    	<!--<img src="/images/loading.gif" alt="loading">-->Loading...	
+  	</div>
+    
 	<div class="player" ng-repeat="player in players | orderBy:predicate:reverse | filter:search">
 	  
 	  <ng-form name="playerFieldForm"> <!-- https://scotch.io/tutorials/building-dynamic-angular-forms-with-ngrepeat-and-ngform -->

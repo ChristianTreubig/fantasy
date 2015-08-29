@@ -1,16 +1,7 @@
-Move this todo file up a directory so it's not reachable from web.
-
-Intro page:
-	-Stat projections from fantasysharks.com
-	-Fantasy Points calculations based upon Yahoo standard scoring (non-PPR).
-	-Price based upon average auction values from MyFantasyLeague.com.
-
 Layout issues:
 	-accordion on thin screens.
-	-Recommended Price on thin screens.
 
 Do head meta elements.
-Do footer (simple copyright).
 
 Site home page:
 	Try to implement cycling background image in intro div:

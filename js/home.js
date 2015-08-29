@@ -2,7 +2,7 @@ var _throttleTimer = null;
 var _throttleDelay = 50;
 var $window = $(window);
 
-$(document).ready(function() {
+$window.load(function() {
     if (isScrolledIntoView("#football")) {
             slideLinks();
     }

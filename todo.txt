@@ -1,8 +1,6 @@
 Layout issues:
 	-accordion on thin screens.
 
-Do head meta elements.
-
 Site home page:
 	Try to implement cycling background image in intro div:
 		http://stackoverflow.com/a/27692315
